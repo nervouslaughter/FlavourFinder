@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, make_response, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from flask_bcrypt import Bcrypt
@@ -104,7 +104,7 @@ def categories():
 def home():
     if 'user_id' in session:
         user = User.query.filter_by(user_id=session['user_id']).first()
-        return render_template('homepage.html')
+        return (render_template('homepage.html'))
     else:
         return render_template('homepage.html')
 def find_restaurants_by_rating(min_rating):
@@ -136,6 +136,7 @@ def restaurants_by_tags():
 def get_restaurant_by_id(id):
     # Query the database for a restaurant with a matching ID
     restauranttemp = restaurant.query.get(id)
+    ##
     
     # Return the restaurant
     return restauranttemp
