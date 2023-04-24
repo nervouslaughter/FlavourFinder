@@ -226,12 +226,13 @@ def restaurants_by_tags():
     
     # Split tags string into list of individual tags
     tag_list = tags.split(', ')
+    print(tag_list)
     
     # Query the database for restaurants that match any of the tags
-    restaurants = restaurant.query.filter((restaurant.tags.split(', ')).in_(tag_list)).all()
+    restaurants = restaurant.query.filter(restaurant.tags.in_(tag_list)).all()
     
     # Render the results in a template
-    return render_template('restaurants.html', restaurant=restaurants)
+    return [x.name for x in restaurants]
 def get_restaurant_by_id(id):
     # Query the database for a restaurant with a matching ID
     restauranttemp = restaurant.query.get(id)
