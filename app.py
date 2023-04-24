@@ -2,6 +2,12 @@ from flask import Flask, make_response, render_template, request, redirect, sess
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from flask_bcrypt import Bcrypt
+import base64
+import json
+import requests
+from werkzeug import *
+
+from base64 import b64encode
 
 
 app = Flask(__name__)
@@ -43,6 +49,7 @@ class Image(db.Model):
     __tablename__ = 'images'
     image_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.restaurant_id'), nullable=False)
+    image_url=db.Column(db.String(255), nullable=False)
 
 
 @app.route('/restaurant/<int:restaurant_id>', methods=['GET', 'POST'])
@@ -52,7 +59,8 @@ def restaurantid(restaurant_id):
         restauranttemp = restaurant.query.get(restaurant_id)
         
         # Render restaurant's HTML page
-        return render_template('restaurant-page.html', restaurant=restauranttemp,num_reviews=Review.query.filter_by(restaurant_id=restaurant_id).count(),reviews=Review.query.filter_by(restaurant_id=restaurant_id).all())
+        print(Image.query.filter_by(restaurant_id=restaurant_id).all())
+        return render_template('restaurant-page.html', restaurant=restauranttemp,num_reviews=Review.query.filter_by(restaurant_id=restaurant_id).count(),reviews=Review.query.filter_by(restaurant_id=restaurant_id).all(),images=Image.query.filter_by(restaurant_id=restaurant_id).all())
 
 @app.route('/signup-page', methods=['GET', 'POST'])
 def signup():
@@ -70,6 +78,30 @@ def signup():
         return redirect('/login-page')
     else:
         return render_template('signup-page.html')
+@app.route('/addimage', methods=[ 'POST'])
+def addimage():
+    if request.method == 'POST':
+        restaurant_id = request.form['restaurant_id']
+        image = request.files.get('image',False)
+        print(image)
+        headers = {"Authorization": "Client-ID db886f20c5da9f2"}
+
+        api_key = 'e86eff8c1b826b265c544c9e383933ca1375c743'
+
+        url = "https://api.imgur.com/3/upload.json"
+
+        j1=requests.post(url, headers=headers, files={'image':image})
+        print(j1)
+        data = json.loads(j1.text)['data']
+        imagelink = data['link']
+        
+        image = Image(restaurant_id=restaurant_id, image_url=imagelink)
+        db.session.add(image)
+        db.session.commit()
+        return redirect('/restaurant/'+restaurant_id)
+    else:
+        return render_template('addimage.html')
+
 
 @app.route('/login-page', methods=['GET', 'POST'])
 def login():
