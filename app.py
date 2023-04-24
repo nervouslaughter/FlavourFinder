@@ -39,6 +39,8 @@ class restaurant(db.Model) :
     latitude = db.Column('latitude',db.Float())
     longitude = db.Column('longitude',db.Float())
     pricing_for_two = db.Column('pricing_for_two',db.Integer())
+    def tagspresent(self,x):
+        return  x in  self.tags.split(', ') 
 
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -229,7 +231,7 @@ def restaurants_by_tags():
     print(tag_list)
     
     # Query the database for restaurants that match any of the tags
-    restaurants = restaurant.query.filter(restaurant.tags.in_(tag_list)).all()
+    restaurants = restaurant.query.filter(restaurant.tagspresent(tag_list)).all()
     
     # Render the results in a template
     return [x.name for x in restaurants]
