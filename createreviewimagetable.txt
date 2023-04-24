@@ -6,4 +6,9 @@ CREATE TABLE `review_images` (
   CONSTRAINT `fk_images_reviews` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`review_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-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
+CREATE TABLE reviewtouser (
+  review_id INTEGER,
+  user_id INTEGER
+    PRIMARY KEY (id),
+
+);

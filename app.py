@@ -48,12 +48,22 @@ class Review(db.Model):
     restaurant_id = db.Column('restaurant_id',db.Integer, db.ForeignKey('restaurants.restaurant_id'), nullable=False)
     rating = db.Column('rating',db.Integer, nullable=False)
     comment = db.Column('comment',db.Text(), nullable=False)
-    upvote_count = db.Column('upvote_count',db.Integer, default=0,nullable=True)
+    upvote_count = db.Column('upvote_count',db.Integer, default=0,nullable=False)
 class Image(db.Model):
     __tablename__ = 'images'
     image_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.restaurant_id'), nullable=False)
     image_url=db.Column(db.String(255), nullable=False)
+class review_images(db.Model):
+    __tablename__ = 'review_images'
+    image_id=db.Column(db.Integer, db.ForeignKey('images.image_id'), primary_key=True)
+    review_id=db.Column(db.Integer, db.ForeignKey('reviews.review_id'), primary_key=True)
+    image_url=db.Column(db.String(255), nullable=False)
+class reviewtouser(db.Model):
+    __tablename__ = 'reviewstouser'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True,nullable=False)
+    review_id = db.Column(db.Integer,nullable=False)
+    user_id = db.Column(db.Integer,nullable=False)
 @app.route('/search-page',methods=['POST','GET'])
 def search():
     if (request.method=='GET'):
@@ -88,13 +98,7 @@ def find_nearest():
             db.func.pow(restaurant.longitude - target_lon, 2)
         )
     ).limit(limit)
-    results = query.all()
-    nearest = []
-    for row in results:
-        distance = finddistance(target_lat, target_lon, row.latitude, row.longitude)
-        nearest.append((row, distance))
-    nearest = sorted(nearest, key=lambda x: x[1])
-    return {'results': [r[0] for r in nearest]}
+    return [x.name for x in query.all()]
 
 
 
@@ -231,7 +235,7 @@ def restaurants_by_tags():
     print(tag_list)
     
     # Query the database for restaurants that match any of the tags
-    restaurants = restaurant.query.filter(restaurant.tagspresent(tag_list)).all()
+    restaurants = restaurant.query.filter(restaurant.tags.in_(tag_list)).all()
     
     # Render the results in a template
     return [x.name for x in restaurants]
@@ -285,6 +289,31 @@ def reviewwrite(restaurant_id):
         
         # Redirect to restaurant's HTML page
         return redirect('/restaurant/restaurant_id')
+@app.route('/restaurant/<int:restaurant_id>/<int:review_id>',methods=['GET'])
+def increaseupvotes(restaurant_id,review_id):
+    if (session['logged_in']==False):
+        return redirect('/login-page')
+    print()
+    print()
+    print()
+    print(session['user_id'])
+    print(review_id)
+    print(restaurant_id)
+    if (reviewtouser.query.filter_by(review_id=review_id,user_id=session['user_id']).first()):
+        
+        return redirect('/restaurant/'+str(restaurant_id))
+    else:
+        print("HERE")
+        print(session['user_id'])
+        newreviewtouser=reviewtouser(review_id=review_id,user_id=session['user_id'])
+        review = Review.query.get(review_id)
+        if (review.upvote_count==None):
+            review.upvote_count=0
+        review.upvote_count += 1
+
+        db.session.add(newreviewtouser)
+        db.session.commit()
+        return redirect('/restaurant/'+str(restaurant_id))
 
 @app.route('/profile-page')
 def profile():

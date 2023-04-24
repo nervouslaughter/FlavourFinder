@@ -41,3 +41,10 @@ CREATE TABLE `images` (
   PRIMARY KEY (`image_id`),
   CONSTRAINT `fk_images_restaurants` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+CREATE TABLE `reviewstoimages` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(255) NOT NULL,
+  `review_ied` INT(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+);
