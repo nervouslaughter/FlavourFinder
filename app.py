@@ -57,7 +57,8 @@ def restaurantid(restaurant_id):
     
         # Retrieve restaurant from database
         restauranttemp = restaurant.query.get(restaurant_id)
-        
+        if (restauranttemp == None):
+            return make_response('Restaurant not found', 404)
         # Render restaurant's HTML page
         print(Image.query.filter_by(restaurant_id=restaurant_id).all())
         return render_template('restaurant-page.html', restaurant=restauranttemp,num_reviews=Review.query.filter_by(restaurant_id=restaurant_id).count(),reviews=Review.query.filter_by(restaurant_id=restaurant_id).all(),images=Image.query.filter_by(restaurant_id=restaurant_id).all())
