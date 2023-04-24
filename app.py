@@ -275,7 +275,6 @@ def reviewwrite(restaurant_id):
         
         # Create new review object
         new_review = Review(
-            user_id=session['user_id'],
             restaurant_id=restaurant_id,
             rating=rating,
             comment=comment,
