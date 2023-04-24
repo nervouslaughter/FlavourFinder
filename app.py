@@ -269,7 +269,7 @@ def reviewwrite(restaurant_id):
         rating = request.form.get('rating',False)
         if (rating==False):
             return make_response('Rating cannot be empty', 400)
-        comment = request.form('comment',False)
+        comment = request.form.get('comment',False)
         if (comment==False):
             return make_response('Comment cannot be empty', 400)
         
