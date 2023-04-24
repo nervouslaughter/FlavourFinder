@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+  </head>
+  <body>
+    <div class="macbook-pro-16-1">
+      <div class="navbar">
+        <div class="navbar-child"></div>
+        <img class="logo-icon" alt="" src="../static/public/logo.svg" />
+        <div class="about-us" id="aBOUTUSText">ABOUT US</div>
+        <div class="categories" id="cATEGORIESText">CATEGORIES</div>
+        <div class="contact-us">CONTACT US</div>
+        <div class="navbar-item" id="rectangle1"></div>
+        <div class="login">Login</div>
+        <div class="navbar-inner"></div>
+        <img
+          class="image-1-icon"
+          alt=""
+          src="../static/public/image-1@2x.png"
+          id="image1Icon"
+        />
+        <div class="line-div"></div>
+        <div class="type-in-your">Type in your craving...</div>
+        <img
+          class="noun-profile-picture-3278830-1-icon"
+          alt=""
+          src="../static/public/nounprofilepicture3278830-1.svg"
+          id="nounProfilePicture32788301Icon"
+        />
+      </div>
+      <div class="resto-cover">
+        <img class="image-5-icon" alt="" src="../static/public/image-5@2x.png" /><img
+          class="image-6-icon"
+          alt=""
+          src="../static/public/image-6@2x.png"
+        /><img class="image-7-icon" alt="" src="../static/public/image-7@2x.png" /><img
+          class="image-8-icon"
+          alt=""
+          src="../static/public/image-8@2x.png"
+        /><img class="image-9-icon" alt="" src="../static/public/image-9@2x.png" />
+        <div class="resto-cover1"></div>
+      </div>
+    </div>
+
+    <script>
+      var aBOUTUSText = document.getElementById("aBOUTUSText");
+      if (aBOUTUSText) {
+        aBOUTUSText.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIESText = document.getElementById("cATEGORIESText");
+      if (cATEGORIESText) {
+        cATEGORIESText.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var rectangle1 = document.getElementById("rectangle1");
+      if (rectangle1) {
+        rectangle1.addEventListener("click", function (e) {
+          window.location.href = "./login-page";
+        });
+      }
+      
+      var image1Icon = document.getElementById("image1Icon");
+      if (image1Icon) {
+        image1Icon.addEventListener("click", function (e) {
+          window.location.href = "./search-page";
+        });
+      }
+      
+      var nounProfilePicture32788301Icon = document.getElementById(
+        "nounProfilePicture32788301Icon"
+      );
+      if (nounProfilePicture32788301Icon) {
+        nounProfilePicture32788301Icon.addEventListener("click", function (e) {
+          window.location.href = "./profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>

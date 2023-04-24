@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/about-us.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+  </head>
+  <body>
+    <div class="about-us5">
+      <img
+        class="backgroung-img-icon"
+        alt=""
+        src="../static/public/backgroung-img@2x.png"
+      />
+      <div class="about-us-child"></div>
+      <div class="we-help-you-container">
+        <p class="we-help-you">We help you find great</p>
+        <p class="we-help-you">food in your area</p>
+      </div>
+      <div class="navbar5">
+        <div class="navbar-child16"></div>
+        <img class="logo-icon5" alt="" src="../static/public/logo1.svg" />
+        <div class="about-us6" id="aBOUTUSText">ABOUT US</div>
+        <div class="categories6" id="cATEGORIESText">CATEGORIES</div>
+        <div class="contact-us5">CONTACT US</div>
+        <div class="navbar-child17" id="rectangle2"></div>
+        <div class="login5">Login</div>
+        <div class="navbar-child18"></div>
+        <img
+          class="image-1-icon5"
+          alt=""
+          src="../static/public/image-1@2x.png"
+          id="image1Icon"
+        />
+        <div class="navbar-child19"></div>
+        <div class="type-in-your5">Type in your craving...</div>
+        <img
+          class="noun-profile-picture-3278830-1-icon5"
+          alt=""
+          src="../static/public/nounprofilepicture3278830-15.svg"
+          id="nounProfilePicture32788301Icon"
+        />
+      </div>
+    </div>
+
+    <script>
+      var aBOUTUSText = document.getElementById("aBOUTUSText");
+      if (aBOUTUSText) {
+        aBOUTUSText.addEventListener("click", function (e) {
+          window.location.href = "about-us";
+        });
+      }
+      
+      var cATEGORIESText = document.getElementById("cATEGORIESText");
+      if (cATEGORIESText) {
+        cATEGORIESText.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var rectangle2 = document.getElementById("rectangle2");
+      if (rectangle2) {
+        rectangle2.addEventListener("click", function (e) {
+          window.location.href = "./login-page";
+        });
+      }
+      
+      var image1Icon = document.getElementById("image1Icon");
+      if (image1Icon) {
+        image1Icon.addEventListener("click", function (e) {
+          window.location.href = "./search-page";
+        });
+      }
+      
+      var nounProfilePicture32788301Icon = document.getElementById(
+        "nounProfilePicture32788301Icon"
+      );
+      if (nounProfilePicture32788301Icon) {
+        nounProfilePicture32788301Icon.addEventListener("click", function (e) {
+          window.location.href = "./profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>

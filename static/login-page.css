@@ -1,0 +1,226 @@
+.login-button {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: var(--color-sandybrown);
+  position: absolute;
+  top: 639px;
+  left: 291px;
+  border-radius: var(--br-3xs);
+  width: 160px;
+  height: 54px;
+}
+.login7 {
+  position: absolute;
+  top: 647px;
+  left: 310px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+.password-box {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-white);
+  position: absolute;
+  top: 563px;
+  left: 96px;
+  border-radius: var(--br-3xs);
+  box-sizing: border-box;
+  width: 563px;
+  height: 44px;
+}
+.password1 {
+  position: absolute;
+  top: 567px;
+  left: 119px;
+  display: inline-block;
+  width: 159px;
+}
+.username-box1 {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-white);
+  position: absolute;
+  top: 490px;
+  left: 96px;
+  border-radius: var(--br-3xs);
+  box-sizing: border-box;
+  width: 563px;
+  height: 44px;
+}
+.username2 {
+  position: absolute;
+  top: 494px;
+  left: 119px;
+  display: inline-block;
+  width: 173px;
+}
+.dont-have-an,
+.signup-instead {
+  position: absolute;
+  top: 705px;
+  left: 215px;
+  font-size: var(--font-size-mini);
+}
+.signup-instead {
+  text-decoration: none;
+  left: 417px;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-darkslateblue-100);
+  cursor: pointer;
+}
+.flavourfinder1 {
+  top: 0;
+  left: 261px;
+  font-weight: 900;
+  display: inline-block;
+  width: 303px;
+}
+.flavourfinder1,
+.login-prompt,
+.login-to {
+  position: absolute;
+  height: 32px;
+}
+.login-to {
+  top: 0;
+  left: 0;
+  font-weight: 900;
+  color: var(--color-black);
+  display: inline-block;
+  width: 239px;
+}
+.login-prompt {
+  top: 423px;
+  left: 67px;
+  width: 564px;
+  font-size: var(--font-size-21xl);
+  color: var(--color-sandybrown);
+}
+.navbar-child24,
+.random-gole-icon1 {
+  position: absolute;
+  top: 295px;
+  left: 943px;
+  width: 645px;
+  height: 648px;
+}
+.navbar-child24 {
+  top: 0;
+  left: 0;
+  background-color: var(--color-white);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  width: 1728px;
+  height: 80px;
+}
+.logo-icon7 {
+  position: absolute;
+  height: 50%;
+  width: 3.28%;
+  top: 25%;
+  right: 89.78%;
+  bottom: 25%;
+  left: 6.94%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.about-us8 {
+  left: 973px;
+  cursor: pointer;
+}
+.about-us8,
+.categories8,
+.contact-us7 {
+  position: absolute;
+  top: 29px;
+  font-weight: 600;
+}
+.categories8 {
+  left: 1121px;
+  cursor: pointer;
+}
+.contact-us7 {
+  left: 1291px;
+}
+.navbar-child25 {
+  position: absolute;
+  top: 18px;
+  left: 1462px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-sandybrown);
+  width: 100px;
+  height: 45px;
+  cursor: pointer;
+}
+.login8 {
+  position: absolute;
+  top: 29px;
+  left: 1485px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+.navbar-child26 {
+  position: absolute;
+  top: 18px;
+  left: 247px;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25) inset;
+  border: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+  width: 656px;
+  height: 45px;
+}
+.image-1-icon7 {
+  position: absolute;
+  top: 30px;
+  left: 263px;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.navbar-child27 {
+  position: absolute;
+  top: 24.75px;
+  left: 298.75px;
+  border-right: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+  width: 0.5px;
+  height: 30.5px;
+}
+.type-in-your7 {
+  position: absolute;
+  top: 30px;
+  left: 315px;
+  font-size: var(--font-size-base);
+  color: var(--color-gray-200);
+}
+.noun-profile-picture-3278830-1-icon7 {
+  position: absolute;
+  top: 20px;
+  left: 1618px;
+  width: 41px;
+  height: 40px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.navbar7 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1728px;
+  height: 80px;
+  font-size: var(--font-size-lg);
+}
+.login-page {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 1117px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-11xl);
+  color: var(--color-black);
+  font-family: var(--font-montserrat);
+}

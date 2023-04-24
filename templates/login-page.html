@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/login-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+  </head>
+  <body>
+    <div class="login-page">
+      <form method="post" action="./login-page">
+      <button class="login-button" id="loginButton"></button>
+      <div class="login7">Login</div>
+      <input class="password-box" type="text" name="password" />
+      <div class="password1">Password</div>
+      <input class="username-box1" type="text" name="usname" />
+      <div class="username2">Username</div>
+      <i class="dont-have-an">Don’t have an account?</i
+      ><a class="signup-instead" id="signupInstead">Signup instead..</a>
+      </form>
+      <div class="login-prompt">
+        <div class="flavourfinder1">FlavourFinder</div>
+        <div class="login-to">Login to</div>
+      </div>
+      <img class="random-gole-icon1" alt="" src="../static/public/random-gole1.svg" />
+      <div class="navbar7">
+        <div class="navbar-child24"></div>
+        <img class="logo-icon7" alt="" src="../static/public/logo1.svg" />
+        <div class="about-us8" id="aBOUTUSText">ABOUT US</div>
+        <div class="categories8" id="cATEGORIESText">CATEGORIES</div>
+        <div class="contact-us7">CONTACT US</div>
+        <div class="navbar-child25" id="rectangle1"></div>
+        <div class="login8">Login</div>
+        <div class="navbar-child26"></div>
+        <img
+          class="image-1-icon7"
+          alt=""
+          src="../static/public/image-1@2x.png"
+          id="image1Icon"
+        />
+        <div class="navbar-child27"></div>
+        <div class="type-in-your7">Type in your craving...</div>
+        <img
+          class="noun-profile-picture-3278830-1-icon7"
+          alt=""
+          src="../static/public/nounprofilepicture3278830-17.svg"
+          id="nounProfilePicture32788301Icon"
+        />
+      </div>
+    </div>
+
+    <script>
+      // var loginButton = document.getElementById("loginButton");
+      // if (loginButton) {
+      //   loginButton.addEventListener("click", function (e) {
+      //     window.location.href = "./login-page";
+      //   });
+      // }
+      
+      var signupInstead = document.getElementById("signupInstead");
+      if (signupInstead) {
+        signupInstead.addEventListener("click", function (e) {
+          window.location.href = "./signup-page";
+        });
+      }
+      
+      var aBOUTUSText = document.getElementById("aBOUTUSText");
+      if (aBOUTUSText) {
+        aBOUTUSText.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIESText = document.getElementById("cATEGORIESText");
+      if (cATEGORIESText) {
+        cATEGORIESText.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var rectangle1 = document.getElementById("rectangle1");
+      if (rectangle1) {
+        rectangle1.addEventListener("click", function (e) {
+          window.location.href = "./login-page";
+        });
+      }
+      
+      var image1Icon = document.getElementById("image1Icon");
+      if (image1Icon) {
+        image1Icon.addEventListener("click", function (e) {
+          window.location.href = "./search-page";
+        });
+      }
+      
+      var nounProfilePicture32788301Icon = document.getElementById(
+        "nounProfilePicture32788301Icon"
+      );
+      if (nounProfilePicture32788301Icon) {
+        nounProfilePicture32788301Icon.addEventListener("click", function (e) {
+          window.location.href = "./profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>

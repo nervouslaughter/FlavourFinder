@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/signup-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+  </head>
+  <body>
+    <div class="signup-page">
+      <img class="random-gole-icon" alt="" src="../static/public/random-gole.svg" /><a
+        class="login-instead"
+        id="loginInstead"
+        >Login Instead.</a
+      ><i class="already-have-an">Already have an account? </i
+      >
+      <form id="submitform" method="post" action="./signup-page">
+      <button class="signup-button" id="signupButton"></button>
+      <div class="sign-up">Sign Up</div>
+      
+ 
+      <input class="confirm-pwd-box" type="text" name="Confirmpass" />
+      <div class="confirm-password">Confirm Password</div>
+      <input class="pwd-box" type="text" name="password"/>
+      <div class="password">Password</div>
+      <input class="email-box" type="text" name="email" />
+      <div class="email1">Email</div>
+      <input class="username-box" type="text" name="usname" />
+      <div class="username1" >Username</div>
+      <input class="last-name-box" type="text" name="lastname" />
+      <div class="last-name">Last name</div>
+      <input class="first-name-box" type="text" name="firstname" />
+      </form>
+      <div class="first-name">First name</div>
+      <div class="sign-up-prompt">
+        <div class="flavourfinder">FlavourFinder</div>
+        <div class="sign-up-for">Sign up for</div>
+      </div>
+      <div class="navbar6">
+        <div class="navbar-child20"></div>
+        <img class="logo-icon6" alt="" src="../static/public/logo1.svg" />
+        <div class="about-us7" id="aBOUTUSText">ABOUT US</div>
+        <div class="categories7" id="cATEGORIESText">CATEGORIES</div>
+        <div class="contact-us6">CONTACT US</div>
+        <div class="navbar-child21" id="rectangle1"></div>
+        <div class="login6">Login</div>
+        <div class="navbar-child22"></div>
+        <img
+          class="image-1-icon6"
+          alt=""
+          src="../static/public/image-1@2x.png"
+          id="image1Icon"
+        />
+        <div class="navbar-child23"></div>
+        <div class="type-in-your6">Type in your craving...</div>
+        <img
+          class="noun-profile-picture-3278830-1-icon6"
+          alt=""
+          src="../static/public/nounprofilepicture3278830-16.svg"
+          id="nounProfilePicture32788301Icon"
+        />
+      </div>
+    </div>
+
+    <script>
+      var loginInstead = document.getElementById("loginInstead");
+      if (loginInstead) {
+        loginInstead.addEventListener("click", function (e) {
+          window.location.href = "./login-page";
+        });
+      }
+      
+      var signupButton = document.getElementById("signupButton");
+      if (signupButton) {
+        signupButton.addEventListener("click", function (e) {
+          event.preventDefault();
+          const form=document.querySelector('#submitform');
+          form.submit();
+
+        });
+      }
+      
+      var aBOUTUSText = document.getElementById("aBOUTUSText");
+      if (aBOUTUSText) {
+        aBOUTUSText.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIESText = document.getElementById("cATEGORIESText");
+      if (cATEGORIESText) {
+        cATEGORIESText.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var rectangle1 = document.getElementById("rectangle1");
+      if (rectangle1) {
+        rectangle1.addEventListener("click", function (e) {
+          window.location.href = "./login-page";
+        });
+      }
+      
+      var image1Icon = document.getElementById("image1Icon");
+      if (image1Icon) {
+        image1Icon.addEventListener("click", function (e) {
+          window.location.href = "./search-page";
+        });
+      }
+      
+      var nounProfilePicture32788301Icon = document.getElementById(
+        "nounProfilePicture32788301Icon"
+      );
+      if (nounProfilePicture32788301Icon) {
+        nounProfilePicture32788301Icon.addEventListener("click", function (e) {
+          window.location.href = "./profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>
