@@ -1,0 +1,7 @@
+CREATE TABLE `review_images` (
+  `image_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `review_id` INT(11) NOT NULL,
+  `image_url` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`image_id`),
+  CONSTRAINT `fk_images_reviews` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`review_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
