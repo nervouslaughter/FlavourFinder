@@ -266,14 +266,20 @@ def get_user_profile(user_id=None):
     return profile
 @app.route('/restaurant/<int:restaurant_id>/reviewwrite', methods=['POST'])
 def reviewwrite(restaurant_id):
-        rating = request.form['rating']
-        comment = request.form['comment']
+        rating = request.form.get('rating',False)
+        if (rating==False):
+            return make_response('Rating cannot be empty', 400)
+        comment = request.form('comment',False)
+        if (comment==False):
+            return make_response('Comment cannot be empty', 400)
         
         # Create new review object
         new_review = Review(
+            user_id=session['user_id'],
             restaurant_id=restaurant_id,
             rating=rating,
-            comment=comment
+            comment=comment,
+            upvote_count=0
         )
         
         # Add review to database
@@ -293,9 +299,6 @@ def reviewwrite(restaurant_id):
 def increaseupvotes(restaurant_id,review_id):
     if (session['logged_in']==False):
         return redirect('/login-page')
-    print()
-    print()
-    print()
     print(session['user_id'])
     print(review_id)
     print(restaurant_id)
