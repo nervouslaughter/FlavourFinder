@@ -61,7 +61,7 @@ def search():
         return make_response('Query string cannot be empty', 400)
     items = [x.name for x in restaurant.query.filter(restaurant.name.like('%'+query_string+'%')).limit(5).all()]
     return render_template("search-page.html",restaurants=items)
-def searchnearby(lat1,lon1,lat2,lon2):
+def finddistance(lat1,lon1,lat2,lon2):
     R=6370.0
     dlon = lon2 - lon1
     dlat = lat2 - lat1
@@ -69,6 +69,31 @@ def searchnearby(lat1,lon1,lat2,lon2):
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
     distance = R * c
     return distance
+@app.route('/find_nearest', methods=['GET'])
+def find_nearest():
+    target_lat = request.form.get('lat',False)
+    if (target_lat == False):
+        return make_response('Latitude cannot be empty', 400)
+    target_lon = request.form.get('lon')
+    if (target_lon == False):
+        return make_response('Longitude cannot be empty', 400)
+    limit = request.form.get('limit', 5, type=int)
+    if (limit == False):
+        return make_response('Limit cannot be empty', 400)
+    query = db.session.query(restaurant).order_by(
+        db.func.sqrt(
+            db.func.pow(restaurant.latitude - target_lat, 2) +
+            db.func.pow(restaurant.longitude - target_lon, 2)
+        )
+    ).limit(limit)
+    results = query.all()
+    nearest = []
+    for row in results:
+        distance = finddistance(target_lat, target_lon, row.latitude, row.longitude)
+        nearest.append((row, distance))
+    nearest = sorted(nearest, key=lambda x: x[1])
+    return {'results': [r[0] for r in nearest]}
+
 
 
 
@@ -194,6 +219,7 @@ def restaurants_by_rating(min_rating):
 def restaurants_by_tags():
     # Retrieve tags from form
     tags = request.form.get('tags',False)
+    
     if (tags==False):
         return make_response('Tags cannot be empty', 400)
     
@@ -202,7 +228,7 @@ def restaurants_by_tags():
     tag_list = tags.split(', ')
     
     # Query the database for restaurants that match any of the tags
-    restaurants = restaurant.query.filter(restaurant.tags.in_(tag_list)).all()
+    restaurants = restaurant.query.filter((restaurant.tags.split(', ')).in_(tag_list)).all()
     
     # Render the results in a template
     return render_template('restaurants.html', restaurant=restaurants)
