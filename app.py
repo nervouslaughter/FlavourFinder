@@ -6,6 +6,8 @@ import base64
 import json
 import requests
 from werkzeug import *
+from math import sin, cos, sqrt, atan2, radians
+
 
 from base64 import b64encode
 
@@ -50,6 +52,25 @@ class Image(db.Model):
     image_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.restaurant_id'), nullable=False)
     image_url=db.Column(db.String(255), nullable=False)
+@app.route('/search-page',methods=['POST','GET'])
+def search():
+    if (request.method=='GET'):
+        return render_template('search-page.html')
+    query_string=request.form.get('query',False)
+    if (query_string == False):
+        return make_response('Query string cannot be empty', 400)
+    items = [x.name for x in restaurant.query.filter(restaurant.name.like('%'+query_string+'%')).limit(5).all()]
+    return render_template("search-page.html",restaurants=items)
+def searchnearby(lat1,lon1,lat2,lon2):
+    R=6370.0
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    distance = R * c
+    return distance
+
+
 
 
 @app.route('/restaurant/<int:restaurant_id>', methods=['GET', 'POST'])
@@ -67,27 +88,35 @@ def restaurantid(restaurant_id):
 def signup():
     if request.method == 'POST':
         
-        username = request.form['usname']
-        email = request.form['email']
-        password = request.form['password']
+        username = request.form.get('usname',False)
+        if (username == False):
+            return make_response(render_template('signup-page.html', error='Username cannot be empty'), 400)
+        email = request.form.get('email',False)
+        if (email == False):
+            return make_response(render_template('signup-page.html', error='Email cannot be empty'), 400)
+        password = request.form.get('password',False)
+        if (password == False):
+            return make_response(render_template('signup-page.html', error='Password cannot be empty'), 400)
         if (User.query.filter_by(username=username).first()):
-            return render_template('signup-page.html', error='Username already exists')
+            return make_response(render_template('signup-page.html', error='Username already exists'), 400)
         
         user = User(username=username, email=email, password=password)
         db.session.add(user)
         db.session.commit()
         session['user_id'] = user.user_id
-        entries = User.query.order_by(User.user_id.desc()).limit(10).all()
-        print(entries)
-        return redirect('/login-page')
+        session['logged_in'] = True
+        return redirect('/home-page')
     else:
         return render_template('signup-page.html')
 @app.route('/addimage', methods=[ 'POST'])
 def addimage():
     if request.method == 'POST':
-        restaurant_id = request.form['restaurant_id']
+        restaurant_id = request.form.get('restaurant_id',False)
+        if (restaurant_id==False):
+            return make_response('Restaurant not found', 404)
         image = request.files.get('image',False)
-        print(image)
+        if (image==False):
+            return make_response('Image not found', 404)
         headers = {"Authorization": "Client-ID db886f20c5da9f2"}
 
         api_key = 'e86eff8c1b826b265c544c9e383933ca1375c743'
@@ -95,7 +124,6 @@ def addimage():
         url = "https://api.imgur.com/3/upload.json"
 
         j1=requests.post(url, headers=headers, files={'image':image})
-        print(j1)
         data = json.loads(j1.text)['data']
         imagelink = data['link']
         
@@ -110,8 +138,14 @@ def addimage():
 @app.route('/login-page', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        usname = request.form['usname']
-        password = request.form['password']
+        usname = request.form.get('usname',False)
+        if (usname == False):
+            return make_response(render_template('login-page.html', error='Username cannot be empty'), 400)
+        
+        password = request.form.get('password',False)
+        if (password == False):
+            return make_response(render_template('login-page.html', error='Password cannot be empty'), 400)
+        
         user = User.query.filter_by(username=usname).first()
         
         if (user and user.password==password):
@@ -119,7 +153,7 @@ def login():
             session['logged_in']=True
             return redirect('/homepage')
         else:
-            return render_template('login-page.html', error='Invalid email or password')
+            return make_response(render_template('login-page.html', error='Invalid email or password'), 401)
     if ('logged_in' in session and session['logged_in']==True):
         return redirect('/homepage')
     return render_template('login-page.html')
@@ -149,20 +183,23 @@ def find_restaurants_by_rating(min_rating):
     
     # Return the list of matching restaurants
     return restaurants
-@app.route('/restaurants/<float:min_rating>')
+@app.route('/restaurants/min/<float:min_rating>')
 def restaurants_by_rating(min_rating):
     # Call the find_restaurants_by_rating method to get a list of matching restaurants
     restaurants = find_restaurants_by_rating(min_rating)
     
     # Render the results in a template
-    return render_template('restaurants.html', restaurants=restaurants)
+    return render_template('search-page.html', restaurants=restaurants)
 @app.route('/restaurants-by-tags', methods=['GET'])
 def restaurants_by_tags():
     # Retrieve tags from form
-    tags = request.form['tags']
+    tags = request.form.get('tags',False)
+    if (tags==False):
+        return make_response('Tags cannot be empty', 400)
+    
     
     # Split tags string into list of individual tags
-    tag_list = tags.split(',')
+    tag_list = tags.split(', ')
     
     # Query the database for restaurants that match any of the tags
     restaurants = restaurant.query.filter(restaurant.tags.in_(tag_list)).all()
@@ -218,7 +255,7 @@ def reviewwrite(restaurant_id):
         db.session.commit()
         
         # Redirect to restaurant's HTML page
-        return new_review
+        return redirect('/restaurant/restaurant_id')
 
 @app.route('/profile-page')
 def profile():

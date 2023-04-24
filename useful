@@ -1,1 +1,3 @@
-sed  -iE 's/"\.\/\(.*\)\.css/"\.\.\/\1\.css/g' templates/*.html
+sed  -i 's/"\.\/\(.*\)\.css/"\.\.\/\1\.css/g' templates/*.html
+sed  -i 's/"\./g' templates/*.html
+
