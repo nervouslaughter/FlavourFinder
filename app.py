@@ -100,6 +100,7 @@ def translatereview():
 def search():
     
     query_string=request.form.get('query',False)
+    print(request.form)
     if (query_string == False):
         return make_response('Query string cannot be empty', 400)
     
