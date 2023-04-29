@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "wide-oasis-384716",
+  "private_key_id": "612535ca2408be675c4f0941e89628f044cdb6c1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCJKUwB5FB6veU/\nR9jv7pOhij6y0TFaoCwNEdzP8A7pLExwuS+VuPy8GmJi5zIBNnweEBtkcvPWYWD8\nsaxghooOAqz2hJFCbzFz1c3HL6n1hGDmPf/zuiC+PYvy1bAqb0c/U5ahBtl3K8LY\n5JheciWebZaZcuni1kcqr4dCNp9rVnqRCRWMH0VhkT0L8BvBn79DFf58y7ZtXM1T\nlXFJrAPysM4PRudoiUoxYy11/nkTJTfgSXKTW5nJa8R7HSPe8FhNhaQZKCCquZTD\neiFS29kS6rvD/nDkb9R4VfhJfxvGZqizAtEGszrxz91F1cny3gXEH9FHw8BmZbd3\nHHfminurAgMBAAECgf9MbmhEzTcVdVNc9N6fv5Qamg/sGLifuh4JIfFojEs1XreO\nt18Hhx4JYbcx6VVl7vR2YhOfGYd0/cM+sjoMQfv1t9LvdVzQCT48i7gxKxKkjLq9\nYk0PFLk0I0wdntsf0XQ8IUI5ditzALwaNek0Wpi/RPpSlJw4jwkEBOP4F5oKrlAi\nElJoPxc1wn1RahJ/2mORb5a/sc8N57rgcqOIVBSdt86eDPZB+ufMzRqmF7p3GEi3\nv80zja/kvu3V+/tp8SKmdyG1CQMidh4JBZEHeAr37Tb/TkYx7E+jA1bMgZX0VedQ\ntnWAwKsGDKvBrzy5u9T7O+PeG9YNGag3dz4eyPECgYEAu3qsTV0dFQ+5lDJh20Ut\nmviGH5fqaYQrDkj6o6izn+NN/p0N/dCEysrlQA37b5fU8zDiOhbNB0crBnYtgJ13\n9405tOCWO3Wb6l3goKXJRQ6XNHs5g83LXRgMz6fcwOmHVl1vvnQGRpJjBqseiKho\nBfKIRrfVsP3uvodnFXjnM1sCgYEAu0qs/NLZQA2SPclI6ae0Eio/VI0kjUk0e6vf\ns5+U35Yno5eEwXEHPl0Rqxzh/nOvJ6O1bVIlBfcbm7T7SXBQc+oLdF3r0E9jJq61\nTI2HtX3t3MQFN0r8CTi4S5Nr9RNlJ+bXvp7lt1aloIQoI5RgfE1bTX6RCucGWv5C\nwWUB2fECgYBVBwb8M13MPoyBLPR6uP49Cbfyvjh/UIUifnDGJu4IdtPZxSsiUR7Y\nxnqAuZaufuMCxMnlZI/qXBmkXZa3fTN6n59rbGxWXTmwapFE6svEuSBUmgp0v7Ia\n75xn1Y7mI0PRJKFYdFCgUyX8UUGQ4ygCgoPR5vBQzGoqGUjkUSgyfwKBgQC3cHug\nIO+yAdjTdVtZpu0CwahHqvo6+5FQ89VlvA53Mz1dyGC5inf6x/MvMlnS/AF5BKoF\nCejDP/Ule4yHsF7MOVbAweDepXLKh2GBOjnKNC4OBVvKfUH/0jMHqruZTUbNXxa+\nWClMeaw9XFNoDcK23JlpfGaZVA9wfgpqGwFGMQKBgQCGnrGY3P95cn5NjIck6MFu\n9sVkGk+kk+uuNkNqVL+ccpKQq4rSWHwhyU8T66fc5nYUZt545Sf5uWWUMKCUZGx6\nx8R6x4GWLWl+B8NZcxUryiLVSAxZHAmx7m+B3eSk4MDL43k0i5ozAlEix2F808X6\nHhTdO3jjzM1cFYEsZ8ZgsQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "flavourfinder@wide-oasis-384716.iam.gserviceaccount.com",
+  "client_id": "108549554397224788148",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/flavourfinder%40wide-oasis-384716.iam.gserviceaccount.com"
+}

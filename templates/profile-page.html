@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/profile-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="profile-page">
+      <div class="navbar1">
+        <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+
+        <div class="search-bar1">
+          <img
+            class="search-icon1"
+            alt=""
+            src="../static/public/search-icon1@2x.png"
+            id="searchIcon"
+          />
+
+          <div class="search-bar-item"></div>
+          <form action="/search-page" method="post">
+          <input
+            class="search-area1"
+            type="text"
+            placeholder="search here..."
+            id="nav-search"
+            name="query"
+          />
+          </form>
+        
+        </div>
+        <a class="about-us1" href="./about-us" id="aBOUTUS">ABOUT US</a>
+        <a class="about-us1" href="./categories" id="cATEGORIES"
+          >CATEGORIES</a
+        >
+        <a class="contact-us1" href="./about-us">CONTACT US</a>
+        <div class="login2">
+          <a class="login-container" href="{{session['loginlink']}}">
+            <div class="login3">{{session['logintext']}}</div>
+          </a>
+        </div>
+        <img
+          class="profile-pic-icon1"
+          alt=""
+          src="../static/public/profile-pic1.svg"
+          id="profilePicIcon"
+        />
+      </div>
+      <div class="contents1">
+        <div class="profile-details">
+          <div class="about-text">
+            <p class="just-a-generic">Just a generic foodie looking for</p>
+            <p class="just-a-generic">new good places to eat, love to</p>
+            <p class="just-a-generic">eat italian cuisine!</p>
+          </div>
+          <div class="about">About:</div>
+          <div class="email-examplegmailcom">
+            <span class="email">Email: </span>
+            <span class="examplegmailcom">{{user.email}}</span>
+          </div>
+          <div class="profile-basics">
+            <div class="prof-pic">
+              <img
+                class="profile-pic-icon2"
+                alt=""
+                src="../static/public/profile-pic2.svg"
+              />
+            </div>
+            <b class="name">{{user.username}}</b>
+            <b class="username">Username</b>
+          </div>
+        </div>
+        <img
+          class="separator-line-icon"
+          alt=""
+          src="../static/public/separator-line.svg"
+        />
+
+        <div class="recent-activity">
+          <div class="recently-visited">Recently visited</div>
+          <a class="resto-card" href="./restaurant-page">
+            <img class="image-3-icon" alt="" src="../static/public/resto-img@2x.png" />
+
+            <div class="text-info">
+              <div class="name-tags">
+                <div class="restaurant-name">Restaurant name</div>
+                <div class="tags">
+                  <div class="tag1">
+                    <div class="tag-1">tag 1</div>
+                  </div>
+                  <div class="tag1">
+                    <div class="tag-1">tag 2</div>
+                  </div>
+                </div>
+                <div class="stars">
+                  <img
+                    class="stars-child"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+
+                  <img
+                    class="stars-child"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+
+                  <img
+                    class="stars-child"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+
+                  <img
+                    class="stars-child"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+                </div>
+              </div>
+              <div class="openclosed-until">Open/Closed until</div>
+              <div class="top-review-yo-kai">
+                top review: Yo-Kai Express really surprised me. I was expecting
+                glorified top ramen, but this was actually pretty good! I got
+                the garlic one, and it was solid - I've certainly had better,
+                but this was actually pretty good! I got the garlic one, and it
+                was solid - I've certainly had better, but…”
+              </div>
+            </div>
+          </a>
+          <div class="recently-visited">Recently reviewed</div>
+          <div class="review-card-no-img">
+            <div class="top-text">
+              <div class="recently-visited">Reviewer</div>
+              <button class="translate">
+                <div class="translate-to-english">Translate to English</div>
+              </button>
+            </div>
+            <div class="review-text-star">
+              <div class="review-text">
+                <p class="just-a-generic">
+                  lorem ipsum sed do eiusmod tempor incididunt ut labore et
+                  dolore
+                </p>
+                <p class="just-a-generic">
+                  magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco labo lorem ipsum
+                </p>
+                <p class="just-a-generic">
+                  sed do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Ut enim ad minim
+                </p>
+                <p class="just-a-generic">
+                  veniam, quis nostrud exercitation ullamco labo
+                </p>
+              </div>
+              <div class="stars1">
+                <img
+                  class="stars-child"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+              </div>
+            </div>
+            <div class="vote">
+              <button class="upvote-1">
+                <img class="vector-icon2" alt="" src="../static/public/vector1.svg" />
+
+                <img class="vector-icon3" alt="" src="../static/public/vector2.svg" />
+
+                <img class="vector-icon4" alt="" src="../static/public/vector3.svg" />
+              </button>
+              <div class="recently-visited">10</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
+          window.location.href = "./search-page";
+        });
+      }
+      
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
+          window.location.href = "profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>

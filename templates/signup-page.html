@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/signup-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="signup-page">
+      <div class="navbar6">
+        <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+
+        <div class="search-bar6">
+          <img
+            class="search-icon6"
+            alt=""
+            src="../static/public/search-icon1@2x.png"
+            id="searchIcon"
+          />
+
+          <div class="search-bar-child3"></div>
+          <form action="/search-page" method="post">
+          <input
+            class="search-area6"
+            type="text"
+            placeholder="search here..."
+            id="nav-search"
+            name="query"
+          />
+          </form>
+        </div>
+        <a class="about-us7" href="./about-us" id="aBOUTUS">ABOUT US</a>
+        <a class="about-us7" href="./categories" id="cATEGORIES"
+          >CATEGORIES</a
+        >
+        <a class="contact-us6" href="./about-us">CONTACT US</a>
+        <div class="login12">
+          <a class="login-wrapper3" href="{{session['loginlink']}}">
+            <div class="login13">{{session['logintext']}}</div>
+          </a>
+        </div>
+        <img
+          class="profile-pic-icon7"
+          alt=""
+          src="../static/public/profile-pic5.svg"
+          id="profilePicIcon"
+        />
+      </div>
+      <div class="frame-parent">
+        <form
+          class="sign-up-for-flavourfinder-parent"
+          method="post"
+          id="sign-up-form"
+          action="./signup-page"
+        >
+          <div class="sign-up-for-container">
+            <span class="sign-up-for">Sign up for </span>
+            <span class="flavourfinder">FlavourFinder</span>
+          </div>
+          <div class="name1">
+            <input class="first-name" type="text" placeholder="First Name"name="fname"  />
+
+            <input class="first-name" type="text" placeholder="Last Name" name ="lname"/>
+          </div>
+          <input class="username1" type="text" placeholder="Username" name="usname" />
+
+          <input class="username1" type="text" placeholder="Email" name="email" />
+
+          <input class="password" type="text" placeholder="Password" name="password"/>
+
+          <input class="password" type="text" placeholder="Confirm Password" name="confpassword"/>
+
+          <div class="signup-button">
+            <button class="sign-up">Sign Up</button>
+          </div>
+          </form>
+          <div class="login-instead">
+            <i class="already-have-an">Already have an account? </i>
+            <a class="login-instead1" id="loginInstead">Login Instead.</a>
+          </div>
+        </form>
+
+        <img class="frame-7-2" alt="" src="../static/public/frame-7-1@2x.png" />
+
+      </div>
+      <div class="error1">{{error}}</div>
+
+    </div>
+
+    <script>
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
+          window.location.href = "./search-page";
+        });
+      }
+      
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
+          window.location.href = "./profile-page";
+        });
+      }
+      
+      var loginInstead = document.getElementById("loginInstead");
+      if (loginInstead) {
+        loginInstead.addEventListener("click", function (e) {
+          window.location.href = "./login-page";
+        });
+      }
+      </script>
+  </body>
+</html>

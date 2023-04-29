@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/homepage.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="homepage">
+      <div class="navbar8">
+        <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+        
+        <div class="search-bar8">
+          <img
+            class="search-icon8"
+            alt=""
+            src="../static/public/search-icon1@2x.png"
+            id="searchIcon"
+          />
+
+          <div class="search-bar-child5"></div>
+          <form method="post" action="/search-page">
+          <input
+            class="search-area8"
+            type="text"
+            placeholder="search here..."
+            id="nav-search"
+            name="query"
+          />
+          </form>
+        </div>
+        <a class="about-us9" href="./about-us" id="aBOUTUS">ABOUT US</a>
+        <a class="about-us9" href="./categories" id="cATEGORIES"
+          >CATEGORIES</a
+        >
+        <a class="contact-us8" href="./about-us">CONTACT US</a>
+        <div class="login15">
+          <a class="login-wrapper4" href="{{session['loginlink']}}">
+            <div class="login16">{{session['logintext']}}</div>
+          </a>
+        </div>
+        <img
+          class="profile-pic-icon9"
+          alt=""
+          src="../static/public/profile-pic6.svg"
+          id="profilePicIcon"
+        />
+      </div>
+      <div class="welcome-section">
+        <div class="component-2">
+          <img
+            class="carousel-img-3-icon"
+            alt=""
+            src="../static/public/carouselimg3@2x.png"
+          />
+
+          <img
+            class="carousel-img-2-icon"
+            alt=""
+            src="../static/public/carouselimg2@2x.png"
+          />
+
+          <img
+            class="carousel-img-1-icon"
+            alt=""
+            src="../static/public/carouselimg1@2x.png"
+          />
+        </div>
+        <div class="welcome-prompt">
+          <b class="discover-your-taste-container">
+            <p class="discover">Discover</p>
+            <p class="discover">your taste!</p>
+          </b>
+        </div>
+        <div class="welcome-section-child"></div>
+      </div>
+      <div class="categories-section">
+        <b class="categories10">Categories</b>
+        <div class="frame-group">
+          <div class="component-12-parent">
+            <a class="component-12" href="./search-page">
+              <img
+                class="category-icon-1"
+                alt=""
+                src="../static/public/category-icon-1@2x.png"
+              />
+
+              <div class="fast-food">Fast Food</div>
+            </a>
+            <a class="component-13" href="./search-page">
+              <img
+                class="category-icon-2"
+                alt=""
+                src="../static/public/category-icon-2@2x.png"
+              />
+
+              <div class="beverages">Beverages</div>
+            </a>
+            <a class="component-14" href="./search-page">
+              <img
+                class="category-icon-3"
+                alt=""
+                src="../static/public/category-icon-3@2x.png"
+              />
+
+              <div class="mughlai">Mughlai</div>
+            </a>
+            <a class="component-12" href="./search-page">
+              <img
+                class="category-icon-1"
+                alt=""
+                src="../static/public/category-icon-4@2x.png"
+              />
+
+              <div class="arabic">Arabic</div>
+            </a>
+            <a class="component-12" href="./search-page">
+              <img
+                class="category-icon-1"
+                alt=""
+                src="../static/public/category-icon-5@2x.png"
+              />
+
+              <div class="thai">Thai</div>
+            </a>
+          </div>
+          <div class="component-17-parent">
+            <a class="component-12">
+              <img
+                class="category-icon-1"
+                alt=""
+                src="../static/public/category-icon-6@2x.png"
+              />
+
+              <div class="pizza">Pizza</div>
+            </a>
+            <a class="component-12" href="./search-page">
+              <img
+                class="category-icon-1"
+                alt=""
+                src="../static/public/category-icon-7@2x.png"
+              />
+
+              <div class="chinese">Chinese</div>
+            </a>
+            <a class="component-18" href="./search-page">
+              <img
+                class="category-icon-1"
+                alt=""
+                src="../static/public/category-icon-8@2x.png"
+              />
+
+              <div class="continental">Continental</div>
+            </a>
+            <a class="component-12" href="./search-page">
+              <img
+                class="category-icon-1"
+                alt=""
+                src="../static/public/category-icon-9@2x.png"
+              />
+
+              <div class="north-indian">
+                <p class="discover">North</p>
+                <p class="discover">Indian</p>
+              </div>
+            </a>
+            <a class="component-12" href="./search-page">
+              <img
+                class="category-icon-1"
+                alt=""
+                src="../static/public/category-icon-10@2x.png"
+              />
+
+              <div class="south-indian">
+                <p class="discover">South</p>
+                <p class="discover">Indian</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="review-section">
+        <b class="recent-reviews">Recent Reviews</b>
+        <div class="reviews">
+          <div class="review-1">
+            <a class="resto-mini-card" href="./restaurant/{{review1['restaurant'].restaurant_id}}">
+              <img class="image-3-icon3" alt="" src= "{{review1['imagerest']}}"   />
+
+              <div class="name-tags3">
+                <div class="restaurant-name4">{{review1['restaurant'].name}}</div>
+                <div class="tags4">
+                  <div class="tag14">
+                    <div class="tag-14">{{review1['restaurant'].tags.split(', ')[0]}} </div>
+                  </div>
+                  <div class="tag14">
+                    <div class="tag-14"> {{review1['restaurant'].tags.split(', ')[1]}}</div>
+                  </div>
+                </div>
+                <div class="stars7">
+                  <img
+                    class="stars-child25"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+
+                  <img
+                    class="stars-child25"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+
+                  <img
+                    class="stars-child25"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+
+                  <img
+                    class="stars-child25"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+                </div>
+              </div>
+            </a>
+            <div class="review-1-child"></div>
+            <div class="review-card-with-img1">
+              <div class="top-text3">
+                <div class="reviewer3">{{review1['name']}}</div>
+                <button class="translate3">
+                  <div class="translate-to-english3">Translate to English</div>
+                </button>
+              </div>
+              
+              <div class="review-text-star3">
+                <div class="review-text3">
+                  <p class="discover">
+                    {{review1['comment']}}
+                  </p>
+                  
+                </div>
+                <div class="stars8">
+                  <img
+                    class="stars-child25"
+                    alt=""
+                    src="../static/public/star-11.svg"
+                  />
+
+                  <img
+                    class="stars-child25"
+                    alt=""
+                    src="../static/public/star-11.svg"
+                  />
+
+                  <img
+                    class="stars-child25"
+                    alt=""
+                    src="../static/public/star-11.svg"
+                  />
+
+                  <img
+                    class="stars-child25"
+                    alt=""
+                    src="../static/public/star-11.svg"
+                  />
+                </div>
+              </div>
+              <div class="place-images1">
+                <img
+                  class="image-23-icon1"
+                  alt=""
+                  src="../static/public/image-231@2x.png"
+                />
+
+                <img
+                  class="image-24-icon1"
+                  alt=""
+                  src="../static/public/image-241@2x.png"
+                />
+
+                <img
+                  class="image-25-icon1"
+                  alt=""
+                  src="../static/public/image-251@2x.png"
+                />
+              </div>
+              <form method="post" action="/upvote">
+              <div class="vote3">
+                <input type="hidden" name="review_id" value="{{review1['id']}}">
+                <button class="upvote-13">
+                  <img
+                    class="vector-icon18"
+                    alt=""
+                    src="../static/public/vector8.svg"
+                  />
+
+                  <img
+                    class="vector-icon19"
+                    alt=""
+                    src="../static/public/vector9.svg"
+                  />
+
+                  <img
+                    class="vector-icon20"
+                    alt=""
+                    src="../static/public/vector10.svg"
+                  />
+                </button>
+              </form>
+                <div class="reviewer3">{{review1['upvote_count']}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="review-2">
+            <a class="resto-mini-card" href="./restaurant/{{review2['restaurant'].restaurant_id}}">
+              <img
+                class="image-3-icon3"
+                alt=""
+                src="{{review1['imagerest']}}"
+              />
+
+              <div class="name-tags3">
+                <div class="restaurant-name4">{{review2['restaurant'].name}}</div>
+                <div class="tags4">
+                  <div class="tag14">
+                    <div class="tag-14">{{review2['restaurant'].tags.split(', ')[0]}}</div>
+                  </div>
+                  <div class="tag14">
+                    <div class="tag-14">{{review2['restaurant'].tags.split(', ')[1]}}</div>
+                  </div>
+                </div>
+                <div class="stars7">
+                  <img class="stars-child25" alt="" src="../static/public/star-1.svg" />
+
+                  <img class="stars-child25" alt="" src="../static/public/star-1.svg" />
+
+                  <img class="stars-child25" alt="" src="../static/public/star-1.svg" />
+
+                  <img class="stars-child25" alt="" src="../static/public/star-1.svg" />
+                </div>
+              </div>
+            </a>
+            <div class="review-2-child"></div>
+            <div class="review-card-no-img2">
+              <div class="top-text3">
+                <div class="reviewer3">{{review2['name']}}</div>
+                <button class="translate3">
+                  <div class="translate-to-english3">Translate to English</div>
+                </button>
+              </div>
+              <div class="review-text-star3">
+                <div class="review-text3">
+                  <p class="discover">
+                    {{review2['comment']}}
+                  </p>
+                  
+                </div>
+                <div class="stars8">
+                  <img class="stars-child25" alt="" src="../static/public/star-1.svg" />
+
+                  <img class="stars-child25" alt="" src="../static/public/star-1.svg" />
+
+                  <img class="stars-child25" alt="" src="../static/public/star-1.svg" />
+
+                  <img class="stars-child25" alt="" src="../static/public/star-1.svg" />
+                </div>
+              </div>
+              <form method="post" action="/upvote">
+
+              <div class="vote3">
+                <button class="upvote-13">
+                  <input type="hidden" name="review_id" value="{{review2['id']}}">
+
+                  <img
+                    class="vector-icon18"
+                    alt=""
+                    src="../static/public/vector4.svg"
+                  />
+
+                  <img
+                    class="vector-icon19"
+                    alt=""
+                    src="../static/public/vector11.svg"
+                  />
+
+                  <img
+                    class="vector-icon20"
+                    alt=""
+                    src="../static/public/vector6.svg"
+                  />
+                </button>
+              </form>
+
+                <div class="reviewer3">{{review2['upvote_count']}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
+          window.location.href = "./search-page";
+        });
+      }
+      
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
+          window.location.href = "./profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>

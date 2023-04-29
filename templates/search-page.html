@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/search-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="search-page">
+      <div class="search-data">
+        <div class="navbar3">
+         <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+
+          <div class="search-bar3">
+            <img
+              class="search-icon3"
+              alt=""
+              src="../static/public/search-icon1@2x.png"
+              id="searchIcon"
+            />
+
+            <div class="line-div"></div>
+            <form action="/search-page" method="post">
+            <input
+              class="search-area3"
+              type="text"
+              placeholder="search here..."
+              id="nav-search"
+              name="query"
+            />
+            </form>
+          </div>
+          <a class="about-us3" href="./about-us" id="aBOUTUS">ABOUT US</a>
+          <a class="about-us3" href="./categories" id="cATEGORIES"
+            >CATEGORIES</a
+          >
+          <a class="contact-us3" href="./about-us">CONTACT US</a>
+          <div class="login6">
+            <a class="frame-a" href="{{session['loginlink']}}">
+              <div class="tags-to-search">{{session['logintext']}}</div>
+            </a>
+          </div>
+          <img
+            class="profile-pic-icon4"
+            alt=""
+            src="../static/public/profile-pic1.svg"
+            id="profilePicIcon"
+          />
+        </div>
+        <div class="tag-area">
+          <div class="tag-search">
+            <div class="tags-to-search">Tags to search:</div>
+            <form action="/restaurant_by_tags" method="post">
+            <input
+              class="tag-search-child"
+              type="text"
+              placeholder="Add tag to search..."
+              name="tags"
+            />
+          </form>
+          </div>
+          <div class="tags1">
+            <div class="tag11">
+              <div class="tag-11">tag1</div>
+            </div>
+            <div class="tag11">
+              <div class="tag-11">tag 2</div>
+            </div>
+          </div>
+        </div>
+        <div class="showing-results-for">Showing results for “{{query}}”</div>
+        <a class="resto-card-2" href="./restaurant/{{restaurants[0].restaurant_id}}">
+          <img class="image-3-icon1" alt="" src="{{image2}}" />
+
+          <div class="text-info1">
+            <div class="name-tags1">
+              <div class="restaurant-name2">{{restaurants[0].name}}</div>
+              <div class="tags1">
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[0]}}</div>
+                </div>
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[1]}}</div>
+                </div>
+              </div>
+              <div class="stars5">
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+              </div>
+            </div>
+            <div class="openclosed-until1">Pricing for two: {{restaurants[0].pricing_for_two}}</div>
+            <div class="top-review-yo-kai1">
+              address: {{restaurants[0].address}}
+            </div>
+          </div>
+        </a>
+        <a class="resto-card-2" href="./restaurant/{{restaurants[0].restaurant_id}}">
+          <img class="image-3-icon1" alt="" src="{{image2}}" />
+
+          <div class="text-info1">
+            <div class="name-tags1">
+              <div class="restaurant-name2">{{restaurants[0].name}}</div>
+              <div class="tags1">
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[0]}}</div>
+                </div>
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[1]}}</div>
+                </div>
+              </div>
+              <div class="stars5">
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+              </div>
+            </div>
+            <div class="openclosed-until1">Pricing for two: {{restaurants[0].pricing_for_two}}</div>
+            <div class="top-review-yo-kai1">
+              address: {{restaurants[0].address}}
+            </div>
+          </div>
+        </a>
+        <a class="resto-card-2" href="./restaurant/{{restaurants[1].restaurant_id}}">
+          <img class="image-3-icon1" alt="" src="{{image1}}" />
+
+          <div class="text-info1">
+            <div class="name-tags1">
+              <div class="restaurant-name2"> {{ restaurants[1].name}}</div>
+              <div class="tags1">
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[1].tags.split(', '))[0]}}</div>
+                </div>
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[1].tags.split(', '))[1]}}</div>
+                </div>
+              </div>
+              <div class="stars5">
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+              </div>
+            </div>
+            <div class="openclosed-until1">Pricing for two: {{restaurants[1].pricing_for_two}}</div>
+            <div class="top-review-yo-kai1">
+              address:{{restaurants[1].address}}
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
+          window.location.href = "search-page.html";
+        });
+      }
+      
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
+          window.location.href = "./profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>

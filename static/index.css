@@ -1,0 +1,17 @@
+.error-aagyaaaaaa {
+  position: absolute;
+  top: 26.5rem;
+  left: 4.44rem;
+  font-weight: 800;
+}
+.error {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 69.81rem;
+  overflow: hidden;
+  text-align: center;
+  font-size: 4.5rem;
+  color: var(--color-black);
+  font-family: var(--font-montserrat);
+}

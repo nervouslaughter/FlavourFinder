@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/categories.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="categories4">
+      <div class="navbar4">
+        <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+
+        <div class="search-bar4">
+          <img
+            class="search-icon4"
+            alt=""
+            src="../static/public/search-icon1@2x.png"
+            id="searchIcon"
+          />
+
+          <div class="search-bar-child1"></div>
+          <form action="search-page" method="post">
+          <input
+            class="search-area4"
+            type="text"
+            placeholder="search here..."
+            id="nav-search"
+            name="query"
+          />
+          </form>
+        </div>
+        <a class="about-us4" href="./about-us" id="aBOUTUS">ABOUT US</a>
+        <a class="about-us4" href="categories.html" id="cATEGORIES"
+          >CATEGORIES</a
+        >
+        <a class="contact-us4" href="./about-us">CONTACT US</a>
+        <div class="login8">
+          <a class="login-wrapper1" href="{{session['loginlink']}}">
+            <div class="login9">{{session['logintext']}}</div>
+          </a>
+        </div>
+        <img
+          class="profile-pic-icon5"
+          alt=""
+          src="../static/public/profile-pic1.svg"
+          id="profilePicIcon"
+        />
+      </div>
+      <div class="cards">
+        <div class="row-1">
+          <a class="cat1" href="/search-page/arabic"> </a>
+          <a class="cat2" href="./search-page/continental"> </a>
+          <a class="cat3" href="./search-page/mughal"> </a>
+        </div>
+        <div class="row-1">
+          <a class="cat4" href="./search-page/beverages"> </a>
+          <a class="cat5" href="./search-page/fast"> </a>
+          <a class="cat6" href="./search-page/pizza"> </a>
+        </div>
+        <div class="row-1">
+          <a class="cat7" href="./search-page/south"> </a>
+          <a class="cat8" href="./search-page/chinese"> </a>
+          <a class="cat9" href="./search-page/north"> </a>
+        </div>
+      </div>
+    </div>  
+
+    <script>
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
+          window.location.href = "./search-page";
+        });
+      }
+      
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "categories.html";
+        });
+      }
+      
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
+          window.location.href = "./profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>

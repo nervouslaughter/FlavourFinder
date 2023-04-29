@@ -1,0 +1,5 @@
+sed   -i 's/"\.\.\/\(.*\)\.css/"\.\.\/static\/\1\.css/g' templates/*.html
+sed   -i 's/"\.\/public/"\.\.\/static\/public/g' templates/*.html
+
+sed   -i 's/\/\(.*\)\.html/\/\1/g' templates/*.html
+sed -i 's/aboutus/about-us/g' templates/*.html

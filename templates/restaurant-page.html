@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html>
+  <add key="webpages:Enabled" value="true" />
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/restaurant-page.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="restaurant-page">
+      <div class="navbar2">
+        <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+
+        <div class="search-bar2">
+          <img
+            class="search-icon2"
+            alt=""
+            src="../static/public/search-icon1@2x.png"
+            id="searchIcon"
+          />
+
+          <div class="search-bar-inner"></div>
+          <form action="/search-page",method="post">
+          <input
+            class="search-area2"
+            type="text"
+            placeholder="search here..."
+            id="nav-search"
+            name="query"
+          />
+        </form>
+        </div>
+        <a class="about-us2" href="/about-us" id="aBOUTUS">ABOUT US</a>
+        <a class="about-us2" href="/categories" id="cATEGORIES"
+          >CATEGORIES</a
+        >
+        <a class="contact-us2" href="/about-us">CONTACT US</a>
+        <div class="login4">
+          <a class="login-frame" href="{{session['loginlink']}}">
+            <div class="login5">{{session['logintext']}}</div>
+          </a>
+        </div>
+        <img
+          class="profile-pic-icon3"
+          alt=""
+          src="../static/public/profile-pic3.svg"
+          id="profilePicIcon"
+        />
+      </div>
+      <div class="resto-head">
+        <div class="resto-head-back">
+          <img class="image-5-icon" alt="" src='{{images[0]}}'/>
+
+          <img class="image-6-icon" alt="" src="{{images[1]}}" />
+
+          <img class="image-7-icon" alt="" src="{{images[2]}}" />
+
+          <img class="image-8-icon" alt="" src="{{images[3]}}" />
+
+          <img class="image-9-icon" alt="" src="{{images[4]}}" />
+
+          <div class="resto-cover"></div>
+        </div>
+        <div class="resto-head1">
+          <img
+            class="resto-logo-icon"
+            alt=""
+            src="../static/public/resto-logo@2x.png"
+          />
+
+          <div class="text">
+            <div class="restaurant-name1">{{restaurant.name}}</div>
+            <div class="stars2">
+              <img
+                class="stars-child5"
+                alt=""
+                src="../static/public/review-star-4.svg"
+              />
+
+              <img
+                class="stars-child5"
+                alt=""
+                src="../static/public/review-star-4.svg"
+              />
+
+              <img
+                class="stars-child5"
+                alt=""
+                src="../static/public/review-star-4.svg"
+              />
+
+              <img
+                class="stars-child5"
+                alt=""
+                src="../static/public/review-star-4.svg"
+              />
+            </div>
+            <div class="review-count">{{num_reviews}} reviews</div>
+            <div class="review-count">$$$ {{restaurant.tags}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="write-a-review">Write a review!</div>
+      <div class="resto-info">
+        <div class="data-left-half">
+          <div class="top-buttons">
+            <button class="write-review1">
+              <div class="write-a-review1">Write a Review</div>
+            </button>
+            <div class="share">
+              <div class="share1">Share</div>
+            </div>
+          </div>
+          <div class="review-card-with-img">
+            <div class="top-text1">
+              <div class="review-count">{{reviewtop['name']}}</div>
+              <form method="post" action="/translate">
+                <button class="translate1">
+                  <input type="hidden" name="review_id" value="{{reviewtop['id']}}">
+                
+                
+  
+  
+                  <div class="translate-to-english1">Translate to English</div>
+                  </button>
+                </form>
+            </div>
+            <div class="review-text-star1">
+              <div class="review-text1">
+                <p class="lorem-ipsum-dolor">
+                  {{reviewtop['comment']}}
+                </p>
+                
+              </div>
+              <div class="stars3">
+                <img class="stars-child5" alt="" src="../static/public/star-1.svg" />
+
+                <img class="stars-child5" alt="" src="../static/public/star-1.svg" />
+
+                <img class="stars-child5" alt="" src="../static/public/star-1.svg" />
+
+                <img class="stars-child5" alt="" src="../static/public/star-1.svg" />
+              </div>
+            </div>
+            <div class="place-images">
+              <img
+                class="image-23-icon"
+                alt=""
+                src="{{reviewtop['images'][0]}}"
+              />
+
+              
+            </div>
+            <div class="vote1">
+              <form method="post" action="/upvote">
+                <input type="hidden" name="review_id" value="{{reviewtop['id']}}">
+                <button class="upvote-11">
+                  <img class="vector-icon6" alt="" src="../static/public/vector4.svg" />
+
+                  <img class="vector-icon7" alt="" src="../static/public/vector5.svg" />
+
+                  <img class="vector-icon8" alt="" src="../static/public/vector6.svg" />
+                </button>
+              </form>
+              <div class="review-count">{{reviewtop['upvote_count']}}</div>
+            </div>
+          </div>
+          <div class="review-card-no-img1">
+            <div class="top-text1">
+              <div class="review-count">{{reviewbot['name']}}</div>
+              
+
+            <form method="post" action="/translate">
+              <button class="translate1">
+                <input type="hidden" name="review_id" value="{{reviewbot['id']}}">
+              
+              
+
+
+                <div class="translate-to-english1">Translate to English</div>
+                </button>
+              </form>
+            </div>
+            <div class="review-text-star1">
+              <div class="review-text1">
+                <p class="lorem-ipsum-dolor">
+                  {{reviewbot['comment']}}
+                </p>
+              </div>
+              <div class="stars3">
+                <img class="stars-child5" alt="" src="../static/public/star-1.svg" />
+
+                <img class="stars-child5" alt="" src="../static/public/star-1.svg" />
+
+                <img class="stars-child5" alt="" src="../static/public/star-1.svg" />
+
+                <img class="stars-child5" alt="" src="../static/public/star-1.svg" />
+              </div>
+            </div>
+            
+            <div class="vote1">
+              <form method="post" action="/upvote">
+                <input type="hidden" name="review_id" value="{{reviewbot['id']}}">
+                <button class="upvote-11">
+                  <img class="vector-icon6" alt="" src="../static/public/vector4.svg" />
+
+                  <img class="vector-icon7" alt="" src="../static/public/vector5.svg" />
+
+                  <img class="vector-icon8" alt="" src="../static/public/vector6.svg" />
+                </button>
+              </form>
+              <div class="review-count">{{reviewbot['upvote_count']}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="address-box">
+          <div class="address-box-child"></div>
+          <img class="image-10-icon" alt="" src="../static/public/image-10@2x.png" />
+
+          <div class="address">Address</div>
+          <div class="lorem-ipsum-dolor-container">
+            <p class="lorem-ipsum-dolor">{{restaurant.address}}</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script>
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
+          window.location.href = "/search-page";
+        });
+      }
+      
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
+          window.location.href = "/about-us";
+        });
+      }
+      
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "/categories";
+        });
+      }
+      
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
+          window.location.href = "/profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>
