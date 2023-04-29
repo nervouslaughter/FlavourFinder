@@ -9,168 +9,227 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
   </head>
   <body>
     <div class="profile-page">
-      <img
-        class="separator-line-icon"
-        alt=""
-        src="../static/public/separator-line.svg"
-      />
-      <div class="about-text">
-        <p class="just-a-generic">Just a generic foodie looking for</p>
-        <p class="just-a-generic">new good places to eat, love to</p>
-        <p class="just-a-generic">eat italian cuisine!</p>
-      </div>
-      <div class="about">About:</div>
-      <div class="email-examplegmailcom">
-        <span class="email">Email: </span
-        ><span class="examplegmailcom">{{user['email']}}</span>
-      </div>
-      <b class="username">Username</b><b class="name">{{user['username']}}</b
-      ><img
-        class="profile-pic-icon"
-        alt=""
-        src="../static/public/profile-pic.svg"
-      /><img class="edit-icon" alt="" src="../static/public/edit-icon.svg" />
-      <div class="recent-review">
-        <div class="review-card-box"></div>
-        <div class="downvote">
-          <div class="downvote-child"></div>
-          <img class="downvote-item" alt="" src="../static/public/polygon-8.svg" />
-          <div class="downvote-inner"></div>
-        </div>
-        <div class="upvote">
-          <div class="upvote-child"></div>
-          <img class="upvote-item" alt="" src="../static/public/polygon-7.svg" />
-          <div class="upvote-inner"></div>
-        </div>
-        <div class="review-text">
-          <p class="just-a-generic">
-            lorem ipsum sed do eiusmod tempor incididunt ut labore et dolore
-          </p>
-          <p class="just-a-generic">
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            ullamco labo lorem ipsum
-          </p>
-          <p class="just-a-generic">
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim
-          </p>
-          <p class="just-a-generic">
-            veniam, quis nostrud exercitation ullamco labo
-          </p>
-        </div>
-        <img
-          class="review-star-4"
-          alt=""
-          src="../static/public/review-star-4.svg"
-        /><img
-          class="review-star-3"
-          alt=""
-          src="../static/public/review-star-3.svg"
-        /><img
-          class="reviewe-star-2"
-          alt=""
-          src="../static/public/review-star-4.svg"
-        /><img class="review-star-1" alt="" src="../static/public/review-star-4.svg" />
-        <div class="reviewer">Reviewer</div>
-      </div>
-      <div class="recently-reviewed">Recently reviewed</div>
-      <div class="large-resto-card-3">
-        <div class="card-box"></div>
-        <img class="resto-img-icon" alt="" src="../static/public/resto-img@2x.png" />
-        <div class="review-text1">
-          <p class="just-a-generic">
-            top review: Yo-Kai Express really surprised me. I was expecting
-            glorified top ramen, but this was actually pretty good! I got the
-            garlic one, and it was solid - I've certainly had better, but…”
-          </p>
-          <p class="just-a-generic">&nbsp;</p>
-          <p class="just-a-generic"></p>
-        </div>
-        <div class="openclosed-until">Open/Closed until</div>
-        <img class="resto-star-4" alt="" src="../static/public/review-star-4.svg" /><img
-          class="resto-star-3"
-          alt=""
-          src="../static/public/resto-star-3.svg"
-        /><img
-          class="resto-star-2"
-          alt=""
-          src="../static/public/review-star-4.svg"
-        /><img
-          class="resto-star-1"
-          alt=""
-          src="../static/public/review-star-4.svg"
-        /><img class="tag-box-3" alt="" src="../static/public/tag-box-3.svg" />
-        <div class="tag-box-2"></div>
-        <div class="tag-box-1"></div>
-        <div class="tag-text-3">tag 3</div>
-        <div class="tag-text-2">tag 2</div>
-        <div class="tag-text-1">tag 1</div>
-        <div class="restaurant-name">Restaurant name</div>
-      </div>
-      <div class="recently-visited">Recently visited</div>
       <div class="navbar1">
-        <div class="rectangle-div"></div>
-        <img class="logo-icon1" alt="" src="../static/public/logo1.svg" />
-        <div class="about-us1" id="aBOUTUSText">ABOUT US</div>
-        <div class="categories1" id="cATEGORIESText">CATEGORIES</div>
-        <div class="contact-us1">CONTACT US</div>
-        <div class="navbar-child1" id="rectangle5"></div>
-        <div class="login1">Login</div>
-        <div class="navbar-child2"></div>
+        <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+
+        <div class="search-bar1">
+          <img
+            class="search-icon1"
+            alt=""
+            src="../static/public/search-icon1@2x.png"
+            id="searchIcon"
+          />
+
+          <div class="search-bar-item"></div>
+          <form action="/search-page" method="post">
+          <input
+            class="search-area1"
+            type="text"
+            placeholder="search here..."
+            id="nav-search"
+            name="query"
+          />
+          </form>
+        
+        </div>
+        <a class="about-us1" href="./about-us" id="aBOUTUS">ABOUT US</a>
+        <a class="about-us1" href="./categories" id="cATEGORIES"
+          >CATEGORIES</a
+        >
+        <a class="contact-us1" href="./about-us">CONTACT US</a>
+        <div class="login2">
+          <a class="login-container" href="{{session['loginlink']}}">
+            <div class="login3">{{session['logintext']}}</div>
+          </a>
+        </div>
         <img
-          class="image-1-icon1"
+          class="profile-pic-icon1"
           alt=""
-          src="../static/public/image-1@2x.png"
-          id="image1Icon"
+          src="../static/public/profile-pic1.svg"
+          id="profilePicIcon"
         />
-        <div class="navbar-child3"></div>
-        <div class="type-in-your1">Type in your craving...</div>
+      </div>
+      <div class="contents1">
+        <div class="profile-details">
+          <div class="about-text">
+            <p class="just-a-generic">Just a generic foodie looking for</p>
+            <p class="just-a-generic">new good places to eat, love to</p>
+            <p class="just-a-generic">eat italian cuisine!</p>
+          </div>
+          <div class="about">About:</div>
+          <div class="email-examplegmailcom">
+            <span class="email">Email: </span>
+            <span class="examplegmailcom">{{user.email}}</span>
+          </div>
+          <div class="profile-basics">
+            <div class="prof-pic">
+              <img
+                class="profile-pic-icon2"
+                alt=""
+                src="../static/public/profile-pic2.svg"
+              />
+            </div>
+            <b class="name">{{user.username}}</b>
+            <b class="username">Username</b>
+          </div>
+        </div>
         <img
-          class="noun-profile-picture-3278830-1-icon1"
+          class="separator-line-icon"
           alt=""
-          src="../static/public/nounprofilepicture3278830-11.svg"
-          id="nounProfilePicture32788301Icon"
+          src="../static/public/separator-line.svg"
         />
+
+        <div class="recent-activity">
+          <div class="recently-visited">Recently visited</div>
+          <a class="resto-card" href="./restaurant-page">
+            <img class="image-3-icon" alt="" src="../static/public/resto-img@2x.png" />
+
+            <div class="text-info">
+              <div class="name-tags">
+                <div class="restaurant-name">Restaurant name</div>
+                <div class="tags">
+                  <div class="tag1">
+                    <div class="tag-1">tag 1</div>
+                  </div>
+                  <div class="tag1">
+                    <div class="tag-1">tag 2</div>
+                  </div>
+                </div>
+                <div class="stars">
+                  <img
+                    class="stars-child"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+
+                  <img
+                    class="stars-child"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+
+                  <img
+                    class="stars-child"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+
+                  <img
+                    class="stars-child"
+                    alt=""
+                    src="../static/public/review-star-4.svg"
+                  />
+                </div>
+              </div>
+              <div class="openclosed-until">Open/Closed until</div>
+              <div class="top-review-yo-kai">
+                top review: Yo-Kai Express really surprised me. I was expecting
+                glorified top ramen, but this was actually pretty good! I got
+                the garlic one, and it was solid - I've certainly had better,
+                but this was actually pretty good! I got the garlic one, and it
+                was solid - I've certainly had better, but…”
+              </div>
+            </div>
+          </a>
+          <div class="recently-visited">Recently reviewed</div>
+          <div class="review-card-no-img">
+            <div class="top-text">
+              <div class="recently-visited">Reviewer</div>
+              <button class="translate">
+                <div class="translate-to-english">Translate to English</div>
+              </button>
+            </div>
+            <div class="review-text-star">
+              <div class="review-text">
+                <p class="just-a-generic">
+                  lorem ipsum sed do eiusmod tempor incididunt ut labore et
+                  dolore
+                </p>
+                <p class="just-a-generic">
+                  magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco labo lorem ipsum
+                </p>
+                <p class="just-a-generic">
+                  sed do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Ut enim ad minim
+                </p>
+                <p class="just-a-generic">
+                  veniam, quis nostrud exercitation ullamco labo
+                </p>
+              </div>
+              <div class="stars1">
+                <img
+                  class="stars-child"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+              </div>
+            </div>
+            <div class="vote">
+              <button class="upvote-1">
+                <img class="vector-icon2" alt="" src="../static/public/vector1.svg" />
+
+                <img class="vector-icon3" alt="" src="../static/public/vector2.svg" />
+
+                <img class="vector-icon4" alt="" src="../static/public/vector3.svg" />
+              </button>
+              <div class="recently-visited">10</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
-      var aBOUTUSText = document.getElementById("aBOUTUSText");
-      if (aBOUTUSText) {
-        aBOUTUSText.addEventListener("click", function (e) {
-          window.location.href = "./about-us";
-        });
-      }
-      
-      var cATEGORIESText = document.getElementById("cATEGORIESText");
-      if (cATEGORIESText) {
-        cATEGORIESText.addEventListener("click", function (e) {
-          window.location.href = "./categories";
-        });
-      }
-      
-      var rectangle5 = document.getElementById("rectangle5");
-      if (rectangle5) {
-        rectangle5.addEventListener("click", function (e) {
-          window.location.href = "./login-page";
-        });
-      }
-      
-      var image1Icon = document.getElementById("image1Icon");
-      if (image1Icon) {
-        image1Icon.addEventListener("click", function (e) {
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
           window.location.href = "./search-page";
         });
       }
       
-      var nounProfilePicture32788301Icon = document.getElementById(
-        "nounProfilePicture32788301Icon"
-      );
-      if (nounProfilePicture32788301Icon) {
-        nounProfilePicture32788301Icon.addEventListener("click", function (e) {
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
           window.location.href = "profile-page";
         });
       }

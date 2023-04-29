@@ -11,6 +11,20 @@ from math import sin, cos, sqrt, atan2, radians
 
 from base64 import b64encode
 
+from google.cloud import translate_v2 as translate
+
+# Initialize the client
+def translate_review(rev, target_language = "en"):
+    translate_client = translate.Client.from_service_account_json('credents.json')
+    text = rev
+    result = translate_client.detect_language(text)
+    source_lang = result["language"]
+    if (source_lang == "en"):
+        return rev
+    translation = translate_client.translate(text, source_language=source_lang, target_language=target_language)
+    return (translation['translatedText'])
+
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@localhost/flavourfinder'
@@ -44,35 +58,126 @@ class restaurant(db.Model) :
 
 class Review(db.Model):
     __tablename__ = 'reviews'
+    user_id=db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     review_id = db.Column('review_id',db.Integer, primary_key=True,autoincrement=True,default=0)
-    restaurant_id = db.Column('restaurant_id',db.Integer, db.ForeignKey('restaurants.restaurant_id'), nullable=False)
+    restaurant_id = db.Column('restaurant_id',db.Integer,db.ForeignKey('restaurants.restaurant_id'), nullable=False)
     rating = db.Column('rating',db.Integer, nullable=False)
     comment = db.Column('comment',db.Text(), nullable=False)
-    upvote_count = db.Column('upvote_count',db.Integer, default=0,nullable=False)
+    upvote_count = db.Column('upvote_count',db.Integer, default=0)
 class Image(db.Model):
     __tablename__ = 'images'
     image_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.restaurant_id'), nullable=False)
-    image_url=db.Column(db.String(255), nullable=False)
+    image_url=db.Column(db.String(255))
 class review_images(db.Model):
     __tablename__ = 'review_images'
     image_id=db.Column(db.Integer, db.ForeignKey('images.image_id'), primary_key=True)
     review_id=db.Column(db.Integer, db.ForeignKey('reviews.review_id'), primary_key=True)
-    image_url=db.Column(db.String(255), nullable=False)
+    image_url=db.Column(db.String(255))
 class reviewtouser(db.Model):
     __tablename__ = 'reviewstouser'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True,nullable=False)
-    review_id = db.Column(db.Integer,nullable=False)
-    user_id = db.Column(db.Integer,nullable=False)
-@app.route('/search-page',methods=['POST','GET'])
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    review_id = db.Column(db.Integer,db.ForeignKey('reviews.review_id'))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.user_id'),default=0)
+@app.route('/translate',methods=['POST'])
+def translatereview():
+    if (session['logged_in']==False):
+        return redirect('/login-page')
+    print(session['user_id'])
+    review_id=request.form.get('review_id',False)
+    if (review_id==False or review_id==""):
+        return make_response('Review ID cannot be empty', 400)
+    restaurant_id=Review.query.filter_by(review_id=review_id).first().restaurant_id
+    review = Review.query.get(review_id)
+    newtext =translate_review(review.comment)
+    print("HERE")
+    print(session['user_id'])
+
+    review.comment = newtext
+    db.session.commit()
+    return redirect('/restaurant/'+str(restaurant_id))
+@app.route('/search-page',methods=['GET','POST'])
 def search():
-    if (request.method=='GET'):
-        return render_template('search-page.html')
+    
     query_string=request.form.get('query',False)
     if (query_string == False):
         return make_response('Query string cannot be empty', 400)
-    items = [x.name for x in restaurant.query.filter(restaurant.name.like('%'+query_string+'%')).limit(5).all()]
-    return render_template("search-page.html",restaurants=items)
+    
+    
+    restaurants=restaurant.query.filter(restaurant.name.like('%'+query_string+'%')).limit(5).all()
+    # restaurant1={
+    #         'name':restaurants[0].name,
+    #         # 'comment':reviews.first().comment,
+    #         # 'id':reviews.first().review_id,
+    #         'upvote_count':reviews.first().upvote_count,
+    #         'restaurant':restaurant.query.filter_by(restaurant_id=reviews[0].restaurant_id).first(),
+    #         'imagerest':Image.query.filter_by(restaurant_id=reviews[0].restaurant_id).first().image_url,
+
+    #         'images':[x.image_url for x in review_images.query.filter_by(review_id=reviews.first().review_id).all()]
+            
+    # }
+    # review2={
+    #         'name':User.query.get(reviews[1].user_id).username,
+    #         'comment':reviews[1].comment,
+    #         'id':reviews[1].review_id,
+    #         'upvote_count':reviews[1].upvote_count,
+    #         'restaurant':restaurant.query.filter_by(restaurant_id=reviews[1].restaurant_id).first(),
+    #         'imagerest':Image.query.filter_by(restaurant_id=reviews[1].restaurant_id).first().image_url,
+
+    #         'images':[x.image_url for x in review_images.query.filter_by(review_id=reviews[1].review_id).all()]
+            
+    # }
+    if (len(restaurants)<2):
+        return make_response('Not enough restaurants', 400)
+    image1=Image.query.filter_by(restaurant_id=restaurants[0].restaurant_id).first().image_url
+    image2=Image.query.filter_by(restaurant_id=restaurants[1].restaurant_id).first().image_url
+
+    return render_template("search-page.html",restaurants=restaurants,query=query_string,image1=image1,image2=image2)
+@app.route('/search-page/<category>',methods=['GET'])
+def searchcat(category):
+    
+    
+    tag_list =[str(category)]
+    print(tag_list)
+    
+    # Query the database for restaurants that match any of the tags
+    restaurants2=restaurant.query.filter(restaurant.name.like('%'+category+'%')).limit(5).all()
+
+    restaurants = restaurant.query.filter(restaurant.tags.like('%'+category+'%')).all()
+    
+    
+    # restaurant1={
+    #         'name':restaurants[0].name,
+    #         # 'comment':reviews.first().comment,
+    #         # 'id':reviews.first().review_id,
+    #         'upvote_count':reviews.first().upvote_count,
+    #         'restaurant':restaurant.query.filter_by(restaurant_id=reviews[0].restaurant_id).first(),
+    #         'imagerest':Image.query.filter_by(restaurant_id=reviews[0].restaurant_id).first().image_url,
+
+    #         'images':[x.image_url for x in review_images.query.filter_by(review_id=reviews.first().review_id).all()]
+            
+    # }
+    # review2={
+    #         'name':User.query.get(reviews[1].user_id).username,
+    #         'comment':reviews[1].comment,
+    #         'id':reviews[1].review_id,
+    #         'upvote_count':reviews[1].upvote_count,
+    #         'restaurant':restaurant.query.filter_by(restaurant_id=reviews[1].restaurant_id).first(),
+    #         'imagerest':Image.query.filter_by(restaurant_id=reviews[1].restaurant_id).first().image_url,
+
+    #         'images':[x.image_url for x in review_images.query.filter_by(review_id=reviews[1].review_id).all()]
+            
+    # }
+
+    if (len(restaurants)<2):
+        restaurants=restaurants2
+    if (len(restaurants)<2):
+        make_response('Not enough restaurants', 400)
+    image1=Image.query.filter_by(restaurant_id=restaurants[0].restaurant_id).first().image_url
+    image2=Image.query.filter_by(restaurant_id=restaurants[1].restaurant_id).first().image_url
+
+    return render_template("search-page.html",restaurants=restaurants,query=category,image1=image1,image2=image2)
+
 def finddistance(lat1,lon1,lat2,lon2):
     R=6370.0
     dlon = lon2 - lon1
@@ -112,32 +217,67 @@ def restaurantid(restaurant_id):
         if (restauranttemp == None):
             return make_response('Restaurant not found', 404)
         # Render restaurant's HTML page
-        print(Image.query.filter_by(restaurant_id=restaurant_id).all())
-        return render_template('restaurant-page.html', restaurant=restauranttemp,num_reviews=Review.query.filter_by(restaurant_id=restaurant_id).count(),reviews=Review.query.filter_by(restaurant_id=restaurant_id).all(),images=Image.query.filter_by(restaurant_id=restaurant_id).all())
+        reviews=Review.query.filter_by(restaurant_id=restaurant_id).order_by(Review.upvote_count.desc())
+        reviews2=Review.query.filter_by(restaurant_id=restaurant_id).order_by(Review.upvote_count.asc())
+
+        reviewtop={
+            'name':User.query.get(reviews.first().user_id).username,
+            'comment':reviews.first().comment,
+            'id':reviews.first().review_id,
+            'upvote_count':reviews.first().upvote_count,
+            'images':[x.image_url for x in review_images.query.filter_by(review_id=reviews.first().review_id).all()]
+            
+        }
+        
+        print("HERE")
+        print(reviewtop['images'])
+        reviewbot={
+            'name':User.query.get(reviews2.first().user_id).username,
+            'comment':reviews2.first().comment,
+            'upvote_count':reviews2.first().upvote_count,
+            'id':reviews2.first().review_id,
+            'images':[x.image_url for x in review_images.query.filter_by(review_id=reviews.first().review_id).all()]
+
+        }
+        return render_template('restaurant-page.html', restaurant=restauranttemp,num_reviews=Review.query.filter_by(restaurant_id=restaurant_id).count(),reviewtop=reviewtop,reviewbot=reviewbot,images=[x.image_url for x in Image.query.filter_by(restaurant_id=restaurant_id).all()])
 
 @app.route('/signup-page', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        
+        firstname=request.form.get('fname',False)
+        if (firstname == False or firstname==""):
+            return make_response(render_template('signup-page.html', error='First name cannot be empty'), 400)
+        lastname=request.form.get('lname',False)
+        if (lastname == False or lastname==""):
+            return make_response(render_template('signup-page.html', error='Last name cannot be empty'), 400)
         username = request.form.get('usname',False)
-        if (username == False):
+        if (username == False or username==""):
             return make_response(render_template('signup-page.html', error='Username cannot be empty'), 400)
         email = request.form.get('email',False)
-        if (email == False):
+        if (email == False or email==""):
             return make_response(render_template('signup-page.html', error='Email cannot be empty'), 400)
         password = request.form.get('password',False)
-        if (password == False):
+        if (password == False or password==""):
             return make_response(render_template('signup-page.html', error='Password cannot be empty'), 400)
+        confpassword=request.form.get('confpassword',False)
+        if (confpassword == False or confpassword==""):
+            return make_response(render_template('signup-page.html', error='Confirm password cannot be empty'), 400)
         if (User.query.filter_by(username=username).first()):
+            print("user exists")
             return make_response(render_template('signup-page.html', error='Username already exists'), 400)
+        if (password!=confpassword):
+            
+            return make_response(render_template('signup-page.html', error='Passwords do not match'), 400)
         
         user = User(username=username, email=email, password=password)
         db.session.add(user)
         db.session.commit()
         session['user_id'] = user.user_id
         session['logged_in'] = True
-        return redirect('/home-page')
-    else:
+        session['loginlink']='/logout'
+        session['logintext']='Logout'
+        return redirect('/homepage')
+    else:   
         return render_template('signup-page.html')
 @app.route('/addimage', methods=[ 'POST'])
 def addimage():
@@ -170,18 +310,22 @@ def addimage():
 def login():
     if request.method == 'POST':
         usname = request.form.get('usname',False)
-        if (usname == False):
+        print(usname)
+        if (usname == False or usname==""):
             return make_response(render_template('login-page.html', error='Username cannot be empty'), 400)
         
         password = request.form.get('password',False)
-        if (password == False):
+        print(password)
+        if (password == False or password==""):
             return make_response(render_template('login-page.html', error='Password cannot be empty'), 400)
         
         user = User.query.filter_by(username=usname).first()
         
         if (user and user.password==password):
             session['user_id'] = user.user_id
-            session['logged_in']=True
+            session['logged_in'] = True
+            session['loginlink']='/logout'
+            session['logintext']='Logout'
             return redirect('/homepage')
         else:
             return make_response(render_template('login-page.html', error='Invalid email or password'), 401)
@@ -193,6 +337,8 @@ def login():
 def logout():
     session['logged_in']=False
     session['user_id']=None
+    session['loginlink']='/login-page'
+    session['logintext']='Login'
     return redirect('/homepage')
 @app.route('/about-us')
 def aboutus():
@@ -203,11 +349,39 @@ def categories():
 
 @app.route('/homepage')
 def home():
-    if 'user_id' in session:
-        user = User.query.filter_by(user_id=session['user_id']).first()
-        return (render_template('homepage.html'))
+    if (not ('loggedin' in session)):
+        session['loggedin']=False
+        session['user']=None
+        session['logintext']='Login'
+        session['loginlink']='/login-page'
+    reviews=Review.query.order_by(Review.upvote_count.desc())
+    review1={
+            'name':User.query.get(reviews.first().user_id).username,
+            'comment':reviews.first().comment,
+            'id':reviews.first().review_id,
+            'upvote_count':reviews.first().upvote_count,
+            'restaurant':restaurant.query.filter_by(restaurant_id=reviews[0].restaurant_id).first(),
+            'imagerest':Image.query.filter_by(restaurant_id=reviews[0].restaurant_id).first().image_url,
+
+            'images':[x.image_url for x in review_images.query.filter_by(review_id=reviews.first().review_id).all()]
+            
+    }
+    review2={
+            'name':User.query.get(reviews[1].user_id).username,
+            'comment':reviews[1].comment,
+            'id':reviews[1].review_id,
+            'upvote_count':reviews[1].upvote_count,
+            'restaurant':restaurant.query.filter_by(restaurant_id=reviews[1].restaurant_id).first(),
+            'imagerest':Image.query.filter_by(restaurant_id=reviews[1].restaurant_id).first().image_url,
+
+            'images':[x.image_url for x in review_images.query.filter_by(review_id=reviews[1].review_id).all()]
+            
+    }
+
+    if 'user_id' in session and session['user_id']!=None:
+        return (render_template('homepage.html',loginlink='/logout',loginlinktext='LOGOUT',user=User.query.get(session['user_id']),review1=review1,review2=review2))
     else:
-        return render_template('homepage.html')
+        return render_template('homepage.html',loginlink='/login-page',loginlinktext='LOGIN',review1=review1,review2=review2)
 def find_restaurants_by_rating(min_rating):
     # Query the database for all restaurants with a rating greater than or equal to min_rating
     restaurants = restaurant.query.filter(restaurant.rating >= min_rating).all()
@@ -221,24 +395,35 @@ def restaurants_by_rating(min_rating):
     
     # Render the results in a template
     return render_template('search-page.html', restaurants=restaurants)
-@app.route('/restaurants-by-tags', methods=['GET'])
+@app.route('/restaurant_by_tags', methods=['POST'])
 def restaurants_by_tags():
     # Retrieve tags from form
-    tags = request.form.get('tags',False)
-    
-    if (tags==False):
+    tags=request.form.get('tags',False)
+    if (tags=="" or tags==False):
         return make_response('Tags cannot be empty', 400)
     
     
     # Split tags string into list of individual tags
     tag_list = tags.split(', ')
+
     print(tag_list)
     
     # Query the database for restaurants that match any of the tags
     restaurants = restaurant.query.filter(restaurant.tags.in_(tag_list)).all()
+    if (len(restaurants)<2):
+        return make_response('Not enough restaurants', 400)
+    image1=Image.query.filter_by(restaurant_id=restaurants[0].restaurant_id).first()
+    if (image1==None):
+        return make_response('Not enough restaurants', 400)
+    image1=image1.image_url
+    image2=Image.query.filter_by(restaurant_id=restaurants[1].restaurant_id).first()
+    if (image2==None):
+        return make_response('Not enough restaurants', 400)
+    image2=image2.image_url
+
+    return render_template("search-page.html",restaurants=restaurants,query=tags,image1=image1,image2=image2)
     
     # Render the results in a template
-    return [x.name for x in restaurants]
 def get_restaurant_by_id(id):
     # Query the database for a restaurant with a matching ID
     restauranttemp = restaurant.query.get(id)
@@ -251,7 +436,8 @@ def get_restaurant_by_id(id):
 def get_user_profile(user_id=None):
     
     user = User.query.filter_by(user_id=user_id)
-    if not user:
+    
+    if not user.first():
         return None
     user=user.first()
 
@@ -272,35 +458,38 @@ def reviewwrite(restaurant_id):
         comment = request.form.get('comment',False)
         if (comment==False):
             return make_response('Comment cannot be empty', 400)
+        if (session['logged_in']==False):
+            return redirect('/login-page')
         
         # Create new review object
         new_review = Review(
+            user_id=session['user_id'],
             restaurant_id=restaurant_id,
             rating=rating,
             comment=comment,
-            upvote_count=0
+            upvote_count=0,
+            
+            
         )
         
         # Add review to database
         db.session.add(new_review)
-        db.session.commit()
         
         # Update restaurant rating
-        restauranttemp = restaurant.query.get(restaurant_id)
-        num_reviews = len(restauranttemp.reviews)
-        total_rating = sum([review.rating for review in restauranttemp.reviews])
-        restauranttemp.rating = total_rating / num_reviews
         db.session.commit()
         
         # Redirect to restaurant's HTML page
         return redirect('/restaurant/restaurant_id')
-@app.route('/restaurant/<int:restaurant_id>/<int:review_id>',methods=['GET'])
-def increaseupvotes(restaurant_id,review_id):
+@app.route('/upvote',methods=['POST'])
+def increaseupvotes():
     if (session['logged_in']==False):
+        
         return redirect('/login-page')
     print(session['user_id'])
-    print(review_id)
-    print(restaurant_id)
+    review_id=request.form.get('review_id',False)
+    if (review_id==False or review_id==""):
+        return make_response('Review ID cannot be empty', 400)
+    restaurant_id=Review.query.filter_by(review_id=review_id).first().restaurant_id
     if (reviewtouser.query.filter_by(review_id=review_id,user_id=session['user_id']).first()):
         
         return redirect('/restaurant/'+str(restaurant_id))
@@ -319,6 +508,8 @@ def increaseupvotes(restaurant_id,review_id):
 
 @app.route('/profile-page')
 def profile():
+    if (get_user_profile(session['user_id'])==None):
+        return redirect('/login-page')
     return render_template('profile-page.html',user=get_user_profile(session['user_id']))
 # @app.route('/profile/<int:user_id>')
 # def profileuser():

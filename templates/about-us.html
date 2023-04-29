@@ -9,79 +9,93 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
   </head>
   <body>
     <div class="about-us5">
-      <img
-        class="backgroung-img-icon"
-        alt=""
-        src="../static/public/backgroung-img@2x.png"
-      />
-      <div class="about-us-child"></div>
-      <div class="we-help-you-container">
-        <p class="we-help-you">We help you find great</p>
-        <p class="we-help-you">food in your area</p>
-      </div>
       <div class="navbar5">
-        <div class="navbar-child16"></div>
-        <img class="logo-icon5" alt="" src="../static/public/logo1.svg" />
-        <div class="about-us6" id="aBOUTUSText">ABOUT US</div>
-        <div class="categories6" id="cATEGORIESText">CATEGORIES</div>
-        <div class="contact-us5">CONTACT US</div>
-        <div class="navbar-child17" id="rectangle2"></div>
-        <div class="login5">Login</div>
-        <div class="navbar-child18"></div>
+        <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+
+        <div class="search-bar5">
+          <img
+            class="search-icon5"
+            alt=""
+            src="../static/public/search-icon1@2x.png"
+            id="searchIcon"
+          />
+
+          <div class="search-bar-child2"></div>
+          <form action="/search-page" method="post">
+          <input
+            class="search-area5"
+            type="text"
+            placeholder="search here..."
+            id="nav-search"
+            name="query"
+          />
+        </form>
+
+        </div>
+        <a class="about-us6" href="./about-us" id="aBOUTUS">ABOUT US</a>
+        <a class="about-us6" href="./categories" id="cATEGORIES"
+          >CATEGORIES</a
+        >
+        <a class="contact-us5" href="about-us.html">CONTACT US</a>
+        <div class="login10">
+          <a class="login-wrapper2" href="{{session['loginlink']}}">
+            <div class="login11">{{session['logintext']}}</div>
+          </a>
+        </div>
         <img
-          class="image-1-icon5"
+          class="profile-pic-icon6"
           alt=""
-          src="../static/public/image-1@2x.png"
-          id="image1Icon"
+          src="../static/public/profile-pic4.svg"
+          id="profilePicIcon"
         />
-        <div class="navbar-child19"></div>
-        <div class="type-in-your5">Type in your craving...</div>
+      </div>
+      <div class="about-us-welcome">
         <img
-          class="noun-profile-picture-3278830-1-icon5"
+          class="backgroung-img-icon"
           alt=""
-          src="../static/public/nounprofilepicture3278830-15.svg"
-          id="nounProfilePicture32788301Icon"
+          src="../static/public/backgroung-img@2x.png"
         />
+
+        <div class="about-us-welcome-child"></div>
+        <div class="we-help-you-container">
+          <p class="we-help-you">We help you find great</p>
+          <p class="we-help-you">food in your area</p>
+        </div>
       </div>
     </div>
 
     <script>
-      var aBOUTUSText = document.getElementById("aBOUTUSText");
-      if (aBOUTUSText) {
-        aBOUTUSText.addEventListener("click", function (e) {
-          window.location.href = "about-us";
-        });
-      }
-      
-      var cATEGORIESText = document.getElementById("cATEGORIESText");
-      if (cATEGORIESText) {
-        cATEGORIESText.addEventListener("click", function (e) {
-          window.location.href = "./categories";
-        });
-      }
-      
-      var rectangle2 = document.getElementById("rectangle2");
-      if (rectangle2) {
-        rectangle2.addEventListener("click", function (e) {
-          window.location.href = "./login-page";
-        });
-      }
-      
-      var image1Icon = document.getElementById("image1Icon");
-      if (image1Icon) {
-        image1Icon.addEventListener("click", function (e) {
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
           window.location.href = "./search-page";
         });
       }
       
-      var nounProfilePicture32788301Icon = document.getElementById(
-        "nounProfilePicture32788301Icon"
-      );
-      if (nounProfilePicture32788301Icon) {
-        nounProfilePicture32788301Icon.addEventListener("click", function (e) {
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
+          window.location.href = "about-us.html";
+        });
+      }
+      
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
           window.location.href = "./profile-page";
         });
       }

@@ -1,0 +1,167 @@
+.navbar-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-white);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  width: 108rem;
+  height: 5rem;
+}
+.logo-icon {
+  position: absolute;
+  height: 50%;
+  width: 3.28%;
+  top: 25%;
+  right: 89.78%;
+  bottom: 25%;
+  left: 6.94%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.about-us10 {
+  left: 60.81rem;
+  cursor: pointer;
+}
+.about-us10,
+.categories11,
+.contact-us9 {
+  position: absolute;
+  top: 1.81rem;
+  font-weight: 600;
+}
+.categories11 {
+  left: 70.06rem;
+  cursor: pointer;
+}
+.contact-us9 {
+  left: 80.69rem;
+}
+.navbar-item {
+  position: absolute;
+  top: 1.13rem;
+  left: 91.38rem;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-sandybrown);
+  width: 6.25rem;
+  height: 2.81rem;
+  cursor: pointer;
+}
+.login17 {
+  position: absolute;
+  top: 1.81rem;
+  left: 92.81rem;
+  font-weight: 600;
+  color: var(--color-white);
+}
+.navbar-inner {
+  position: absolute;
+  top: 1.13rem;
+  left: 15.44rem;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-white);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25) inset;
+  border: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+  width: 41rem;
+  height: 2.81rem;
+}
+.image-1-icon {
+  position: absolute;
+  top: 1.88rem;
+  left: 16.44rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: cover;
+  cursor: pointer;
+}
+.navbar-child1 {
+  position: absolute;
+  top: 1.55rem;
+  left: 18.67rem;
+  border-right: 0.5px solid var(--color-black);
+  box-sizing: border-box;
+  width: 0.03rem;
+  height: 1.91rem;
+}
+.type-in-your {
+  position: absolute;
+  top: 1.88rem;
+  left: 19.69rem;
+  font-size: 1rem;
+  color: var(--color-gray-100);
+}
+.noun-profile-picture-3278830-1-icon {
+  position: absolute;
+  top: 1.25rem;
+  left: 101.13rem;
+  width: 2.56rem;
+  height: 2.5rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+.navbar9 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 108rem;
+  height: 5rem;
+}
+.image-5-icon1 {
+  position: absolute;
+  top: 0.44rem;
+  left: 41.31rem;
+  width: 21.19rem;
+  height: 25rem;
+  object-fit: cover;
+}
+.image-6-icon1,
+.image-7-icon1,
+.image-8-icon1,
+.image-9-icon1 {
+  position: absolute;
+  top: 0.44rem;
+  left: 0.94rem;
+  width: 40.38rem;
+  height: 25rem;
+  object-fit: cover;
+}
+.image-7-icon1,
+.image-8-icon1,
+.image-9-icon1 {
+  left: 62.5rem;
+  width: 18.75rem;
+}
+.image-8-icon1,
+.image-9-icon1 {
+  left: 80.69rem;
+}
+.image-9-icon1 {
+  left: 99.44rem;
+}
+.resto-cover2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+  width: 108rem;
+  height: 25.31rem;
+}
+.resto-cover1 {
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  width: 118.19rem;
+  height: 25.44rem;
+}
+.macbook-pro-16-1 {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 69.81rem;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-lg);
+  color: var(--color-black);
+  font-family: var(--font-montserrat);
+}

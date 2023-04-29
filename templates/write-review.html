@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../static/global.css" />
+    <link rel="stylesheet" href="../static/write-review.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="write-review">
+      <div class="navbar">
+        <img class="vector-icon" alt="" src="../static/public/vector.svg" />
+
+        <div class="search-bar">
+          <img
+            class="search-icon"
+            alt=""
+            src="../static/public/search-icon1@2x.png"
+            id="searchIcon"
+          />
+
+          <div class="search-bar-child"></div>
+          <input
+            class="search-area"
+            type="text"
+            placeholder="search here..."
+            id="nav-search"
+          />
+        </div>
+        <a class="about-us" href="./about-us" id="aBOUTUS">ABOUT US</a>
+        <a class="about-us" href="./categories" id="cATEGORIES"
+          >CATEGORIES</a
+        >
+        <a class="contact-us" href="./about-us">CONTACT US</a>
+        <div class="login">
+          <a class="login-wrapper" href="{{session['loginlink']}}">
+            <div class="login1">{{session['logintext']}}</div>
+          </a>
+        </div>
+        <img
+          class="profile-pic-icon"
+          alt=""
+          src="../static/public/profile-pic.svg"
+          id="profilePicIcon"
+        />
+      </div>
+      <div class="contents">
+        <textarea class="review-input" placeholder="Enter your review...">
+        </textarea>
+        <img class="frame-7-1" alt="" src="../static/public/frame-7-1@2x.png" />
+      </div>
+    </div>
+
+    <script>
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
+          window.location.href = "./search-page";
+        });
+      }
+      
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
+          window.location.href = "./about-us";
+        });
+      }
+      
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "./categories";
+        });
+      }
+      
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
+          window.location.href = "./profile-page";
+        });
+      }
+      </script>
+  </body>
+</html>

@@ -9,156 +9,96 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
   </head>
   <body>
     <div class="categories4">
-      <img
-        class="category-9-icon"
-        alt=""
-        src="../static/public/category-9.svg"
-        id="category9"
-      />
-      <div class="category-8" id="category8"></div>
-      <div class="category-7" id="category7"></div>
-      <img
-        class="category-6-icon"
-        alt=""
-        src="../static/public/category-9.svg"
-        id="category6"
-      />
-      <div class="category-5" id="category5"></div>
-      <div class="category-4" id="category4"></div>
-      <img
-        class="category-3-icon"
-        alt=""
-        src="../static/public/category-9.svg"
-        id="category3"
-      />
-      <div class="category-2" id="category2"></div>
-      <div class="category-1" id="category1"></div>
       <div class="navbar4">
-        <div class="navbar-child12"></div>
-        <img class="logo-icon4" alt="" src="../static/public/logo1.svg" />
-        <div class="about-us4" id="aBOUTUSText">ABOUT US</div>
-        <div class="categories5" id="cATEGORIESText">CATEGORIES</div>
-        <div class="contact-us4">CONTACT US</div>
-        <div class="navbar-child13" id="rectangle1"></div>
-        <div class="login4">Login</div>
-        <div class="navbar-child14"></div>
+        <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+
+        <div class="search-bar4">
+          <img
+            class="search-icon4"
+            alt=""
+            src="../static/public/search-icon1@2x.png"
+            id="searchIcon"
+          />
+
+          <div class="search-bar-child1"></div>
+          <form action="search-page" method="post">
+          <input
+            class="search-area4"
+            type="text"
+            placeholder="search here..."
+            id="nav-search"
+            name="query"
+          />
+          </form>
+        </div>
+        <a class="about-us4" href="./about-us" id="aBOUTUS">ABOUT US</a>
+        <a class="about-us4" href="categories.html" id="cATEGORIES"
+          >CATEGORIES</a
+        >
+        <a class="contact-us4" href="./about-us">CONTACT US</a>
+        <div class="login8">
+          <a class="login-wrapper1" href="{{session['loginlink']}}">
+            <div class="login9">{{session['logintext']}}</div>
+          </a>
+        </div>
         <img
-          class="image-1-icon4"
+          class="profile-pic-icon5"
           alt=""
-          src="../static/public/image-1@2x.png"
-          id="image1Icon"
-        />
-        <div class="navbar-child15"></div>
-        <div class="type-in-your4">Type in your craving...</div>
-        <img
-          class="noun-profile-picture-3278830-1-icon4"
-          alt=""
-          src="../static/public/nounprofilepicture3278830-14.svg"
-          id="nounProfilePicture32788301Icon"
+          src="../static/public/profile-pic1.svg"
+          id="profilePicIcon"
         />
       </div>
-    </div>
+      <div class="cards">
+        <div class="row-1">
+          <a class="cat1" href="/search-page/arabic"> </a>
+          <a class="cat2" href="./search-page/continental"> </a>
+          <a class="cat3" href="./search-page/mughal"> </a>
+        </div>
+        <div class="row-1">
+          <a class="cat4" href="./search-page/beverages"> </a>
+          <a class="cat5" href="./search-page/fast"> </a>
+          <a class="cat6" href="./search-page/pizza"> </a>
+        </div>
+        <div class="row-1">
+          <a class="cat7" href="./search-page/south"> </a>
+          <a class="cat8" href="./search-page/chinese"> </a>
+          <a class="cat9" href="./search-page/north"> </a>
+        </div>
+      </div>
+    </div>  
 
     <script>
-      var category9 = document.getElementById("category9");
-      if (category9) {
-        category9.addEventListener("click", function (e) {
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
           window.location.href = "./search-page";
         });
       }
       
-      var category8 = document.getElementById("category8");
-      if (category8) {
-        category8.addEventListener("click", function (e) {
-          window.location.href = "./search-page";
-        });
-      }
-      
-      var category7 = document.getElementById("category7");
-      if (category7) {
-        category7.addEventListener("click", function (e) {
-          window.location.href = "./search-page";
-        });
-      }
-      
-      var category6 = document.getElementById("category6");
-      if (category6) {
-        category6.addEventListener("click", function (e) {
-          window.location.href = "./search-page";
-        });
-      }
-      
-      var category5 = document.getElementById("category5");
-      if (category5) {
-        category5.addEventListener("click", function (e) {
-          window.location.href = "./search-page";
-        });
-      }
-      
-      var category4 = document.getElementById("category4");
-      if (category4) {
-        category4.addEventListener("click", function (e) {
-          window.location.href = "./search-page";
-        });
-      }
-      
-      var category3 = document.getElementById("category3");
-      if (category3) {
-        category3.addEventListener("click", function (e) {
-          window.location.href = "./search-page";
-        });
-      }
-      
-      var category2 = document.getElementById("category2");
-      if (category2) {
-        category2.addEventListener("click", function (e) {
-          window.location.href = "./search-page";
-        });
-      }
-      
-      var category1 = document.getElementById("category1");
-      if (category1) {
-        category1.addEventListener("click", function (e) {
-          window.location.href = "./search-page";
-        });
-      }
-      
-      var aBOUTUSText = document.getElementById("aBOUTUSText");
-      if (aBOUTUSText) {
-        aBOUTUSText.addEventListener("click", function (e) {
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
           window.location.href = "./about-us";
         });
       }
       
-      var cATEGORIESText = document.getElementById("cATEGORIESText");
-      if (cATEGORIESText) {
-        cATEGORIESText.addEventListener("click", function (e) {
-          window.location.href = "categories";
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
+          window.location.href = "categories.html";
         });
       }
       
-      var rectangle1 = document.getElementById("rectangle1");
-      if (rectangle1) {
-        rectangle1.addEventListener("click", function (e) {
-          window.location.href = "./login-page";
-        });
-      }
-      
-      var image1Icon = document.getElementById("image1Icon");
-      if (image1Icon) {
-        image1Icon.addEventListener("click", function (e) {
-          window.location.href = "./search-page";
-        });
-      }
-      
-      var nounProfilePicture32788301Icon = document.getElementById(
-        "nounProfilePicture32788301Icon"
-      );
-      if (nounProfilePicture32788301Icon) {
-        nounProfilePicture32788301Icon.addEventListener("click", function (e) {
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
           window.location.href = "./profile-page";
         });
       }

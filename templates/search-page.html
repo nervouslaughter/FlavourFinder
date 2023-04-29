@@ -9,157 +9,241 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap"
+    />
   </head>
   <body>
     <div class="search-page">
-      <a class="large-card-2" id="largeCard2"
-        ><div class="large-card-2-child"></div>
-        <div class="large-card-2-item"></div>
-        <img class="large-card-2-inner" alt="" src="../static/public/tag-box-3.svg" />
-        <div class="large-card-2-child1"></div>
-        <div class="restaurant-name2">Restaurant name</div>
-        <div class="tag-1">tag 1</div>
-        <div class="tag-2">tag 2</div>
-        <div class="tag-3">tag 3</div>
-        <div class="openclosed-until1">Open/Closed until</div>
-        <div class="top-review-yo-kai-container">
-          <p class="pretty-good-i">
-            top review: Yo-Kai Express really surprised me. I was expecting
-            glorified top ramen, but this was actually
-          </p>
-          <p class="pretty-good-i">
-            pretty good! I got the garlic one, and it was solid - I've certainly
-            had better, but…”
-          </p>
-          <p class="pretty-good-i">&nbsp;</p>
-          <p class="pretty-good-i"></p>
+      <div class="search-data">
+        <div class="navbar3">
+         <a href="./homepage"> <img  s="vector-icon12" alt="" src="../static/public/vector.svg" /></a>
+
+          <div class="search-bar3">
+            <img
+              class="search-icon3"
+              alt=""
+              src="../static/public/search-icon1@2x.png"
+              id="searchIcon"
+            />
+
+            <div class="line-div"></div>
+            <form action="/search-page" method="post">
+            <input
+              class="search-area3"
+              type="text"
+              placeholder="search here..."
+              id="nav-search"
+              name="query"
+            />
+            </form>
+          </div>
+          <a class="about-us3" href="./about-us" id="aBOUTUS">ABOUT US</a>
+          <a class="about-us3" href="./categories" id="cATEGORIES"
+            >CATEGORIES</a
+          >
+          <a class="contact-us3" href="./about-us">CONTACT US</a>
+          <div class="login6">
+            <a class="frame-a" href="{{session['loginlink']}}">
+              <div class="tags-to-search">{{session['logintext']}}</div>
+            </a>
+          </div>
+          <img
+            class="profile-pic-icon4"
+            alt=""
+            src="../static/public/profile-pic1.svg"
+            id="profilePicIcon"
+          />
         </div>
-        <img class="image-4-icon" alt="" src="../static/public/image-4@2x.png" /><img
-          class="star-icon"
-          alt=""
-          src="../static/public/review-star-4.svg" /><img
-          class="large-card-2-child2"
-          alt=""
-          src="../static/public/review-star-4.svg" /><img
-          class="large-card-2-child3"
-          alt=""
-          src="../static/public/star-7.svg" /><img
-          class="large-card-2-child4"
-          alt=""
-          src="../static/public/review-star-4.svg" /></a
-      ><a class="large-card-1" id="largeCard1"
-        ><div class="large-card-2-child"></div>
-        <div class="large-card-2-child"></div>
-        <div class="large-card-2-item"></div>
-        <img class="large-card-2-inner" alt="" src="../static/public/tag-box-3.svg" />
-        <div class="large-card-2-child1"></div>
-        <img class="image-3-icon" alt="" src="../static/public/resto-img@2x.png" />
-        <div class="restaurant-name2">Restaurant name</div>
-        <div class="tag-1">tag 1</div>
-        <div class="tag-2">tag 2</div>
-        <div class="tag-3">tag 3</div>
-        <div class="openclosed-until1">Open/Closed until</div>
-        <div class="top-review-yo-kai-container">
-          <p class="pretty-good-i">
-            top review: Yo-Kai Express really surprised me. I was expecting
-            glorified top ramen, but this was actually
-          </p>
-          <p class="pretty-good-i">
-            pretty good! I got the garlic one, and it was solid - I've certainly
-            had better, but…”
-          </p>
-          <p class="pretty-good-i">&nbsp;</p>
-          <p class="pretty-good-i"></p>
+        <div class="tag-area">
+          <div class="tag-search">
+            <div class="tags-to-search">Tags to search:</div>
+            <form action="/restaurant_by_tags" method="post">
+            <input
+              class="tag-search-child"
+              type="text"
+              placeholder="Add tag to search..."
+              name="tags"
+            />
+          </form>
+          </div>
+          <div class="tags1">
+            <div class="tag11">
+              <div class="tag-11">tag1</div>
+            </div>
+            <div class="tag11">
+              <div class="tag-11">tag 2</div>
+            </div>
+          </div>
         </div>
-        <img
-          class="large-card-1-child2"
-          alt=""
-          src="../static/public/review-star-4.svg" /><img
-          class="large-card-1-child3"
-          alt=""
-          src="../static/public/review-star-4.svg" /><img
-          class="large-card-1-child4"
-          alt=""
-          src="../static/public/resto-star-3.svg" /><img
-          class="large-card-1-child5"
-          alt=""
-          src="../static/public/review-star-4.svg"
-      /></a>
-      <div class="showing-results-for">Showing results for “Search”</div>
-      <div class="navbar3">
-        <div class="navbar-child8"></div>
-        <img class="logo-icon3" alt="" src="../static/public/logo1.svg" />
-        <div class="about-us3" id="aBOUTUSText">ABOUT US</div>
-        <div class="categories3" id="cATEGORIESText">CATEGORIES</div>
-        <div class="contact-us3">CONTACT US</div>
-        <div class="navbar-child9" id="rectangle10"></div>
-        <div class="login3">Login</div>
-        <div class="navbar-child10"></div>
-        <img
-          class="image-1-icon3"
-          alt=""
-          src="../static/public/image-1@2x.png"
-          id="image1Icon"
-        />
-        <div class="navbar-child11"></div>
-        <div class="type-in-your3">Type in your craving...</div>
-        <img
-          class="noun-profile-picture-3278830-1-icon3"
-          alt=""
-          src="../static/public/nounprofilepicture3278830-13.svg"
-          id="nounProfilePicture32788301Icon"
-        />
+        <div class="showing-results-for">Showing results for “{{query}}”</div>
+        <a class="resto-card-2" href="./restaurant/{{restaurants[0].restaurant_id}}">
+          <img class="image-3-icon1" alt="" src="{{image2}}" />
+
+          <div class="text-info1">
+            <div class="name-tags1">
+              <div class="restaurant-name2">{{restaurants[0].name}}</div>
+              <div class="tags1">
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[0]}}</div>
+                </div>
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[1]}}</div>
+                </div>
+              </div>
+              <div class="stars5">
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+              </div>
+            </div>
+            <div class="openclosed-until1">Pricing for two: {{restaurants[0].pricing_for_two}}</div>
+            <div class="top-review-yo-kai1">
+              address: {{restaurants[0].address}}
+            </div>
+          </div>
+        </a>
+        <a class="resto-card-2" href="./restaurant/{{restaurants[0].restaurant_id}}">
+          <img class="image-3-icon1" alt="" src="{{image2}}" />
+
+          <div class="text-info1">
+            <div class="name-tags1">
+              <div class="restaurant-name2">{{restaurants[0].name}}</div>
+              <div class="tags1">
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[0]}}</div>
+                </div>
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[1]}}</div>
+                </div>
+              </div>
+              <div class="stars5">
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+              </div>
+            </div>
+            <div class="openclosed-until1">Pricing for two: {{restaurants[0].pricing_for_two}}</div>
+            <div class="top-review-yo-kai1">
+              address: {{restaurants[0].address}}
+            </div>
+          </div>
+        </a>
+        <a class="resto-card-2" href="./restaurant/{{restaurants[1].restaurant_id}}">
+          <img class="image-3-icon1" alt="" src="{{image1}}" />
+
+          <div class="text-info1">
+            <div class="name-tags1">
+              <div class="restaurant-name2"> {{ restaurants[1].name}}</div>
+              <div class="tags1">
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[1].tags.split(', '))[0]}}</div>
+                </div>
+                <div class="tag11">
+                  <div class="tag-11">{{(restaurants[1].tags.split(', '))[1]}}</div>
+                </div>
+              </div>
+              <div class="stars5">
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+
+                <img
+                  class="stars-child17"
+                  alt=""
+                  src="../static/public/review-star-4.svg"
+                />
+              </div>
+            </div>
+            <div class="openclosed-until1">Pricing for two: {{restaurants[1].pricing_for_two}}</div>
+            <div class="top-review-yo-kai1">
+              address:{{restaurants[1].address}}
+            </div>
+          </div>
+        </a>
       </div>
     </div>
 
     <script>
-      var largeCard2 = document.getElementById("largeCard2");
-      if (largeCard2) {
-        largeCard2.addEventListener("click", function (e) {
-          window.location.href = "./restaurant-page";
+      var searchIcon = document.getElementById("searchIcon");
+      if (searchIcon) {
+        searchIcon.addEventListener("click", function (e) {
+          window.location.href = "search-page.html";
         });
       }
       
-      var largeCard1 = document.getElementById("largeCard1");
-      if (largeCard1) {
-        largeCard1.addEventListener("click", function (e) {
-          window.location.href = "./restaurant-page";
-        });
-      }
-      
-      var aBOUTUSText = document.getElementById("aBOUTUSText");
-      if (aBOUTUSText) {
-        aBOUTUSText.addEventListener("click", function (e) {
+      var aBOUTUS = document.getElementById("aBOUTUS");
+      if (aBOUTUS) {
+        aBOUTUS.addEventListener("click", function (e) {
           window.location.href = "./about-us";
         });
       }
       
-      var cATEGORIESText = document.getElementById("cATEGORIESText");
-      if (cATEGORIESText) {
-        cATEGORIESText.addEventListener("click", function (e) {
+      var cATEGORIES = document.getElementById("cATEGORIES");
+      if (cATEGORIES) {
+        cATEGORIES.addEventListener("click", function (e) {
           window.location.href = "./categories";
         });
       }
       
-      var rectangle10 = document.getElementById("rectangle10");
-      if (rectangle10) {
-        rectangle10.addEventListener("click", function (e) {
-          window.location.href = "./login-page";
-        });
-      }
-      
-      var image1Icon = document.getElementById("image1Icon");
-      if (image1Icon) {
-        image1Icon.addEventListener("click", function (e) {
-          window.location.href = "search-page";
-        });
-      }
-      
-      var nounProfilePicture32788301Icon = document.getElementById(
-        "nounProfilePicture32788301Icon"
-      );
-      if (nounProfilePicture32788301Icon) {
-        nounProfilePicture32788301Icon.addEventListener("click", function (e) {
+      var profilePicIcon = document.getElementById("profilePicIcon");
+      if (profilePicIcon) {
+        profilePicIcon.addEventListener("click", function (e) {
           window.location.href = "./profile-page";
         });
       }
