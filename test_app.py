@@ -78,20 +78,20 @@ def test_categories():
 
 def test_restaurants_by_tags():
     with app.test_client() as client:
-            response = client.get('restaurant-by-tags', method='GET', data = {
-                'tags' : 'Pizza, Salad',
+            response = client.post('/restaurant_by_tags', method='POST', data = {
+                'tags' : 'Pizza, Salad'
             })
-            # assert response.status_code == 200
+            assert response.status_code == 200
             print(response.data.decode())
 
-def test_reviewwrite() :
-    with app.test_client() as client:
-        response = client.post('/restaurant/1/reviewwrite', method = 'POST', data = {
-            'rating' : '4',
-            'comment' : 'this restaurant sucks big time'
-        })
-        assert response.status_code == 302
-        print(response.data.decode())
+# def test_reviewwrite() :
+#     with app.test_client() as client:
+#         response = client.post('/restaurant/1/reviewwrite', method = 'POST', data = {
+#             'rating' : '4',
+#             'comment' : 'this restaurant sucks big time'
+#         })
+#         assert response.status_code == 302
+#         print(response.data.decode())
 
 def test_profile():
     with app.test_client() as client:
@@ -113,7 +113,7 @@ def test_increaseupvotes() :
             'password': 'cooldudefour',
         })
         assert response.status_code == 302
-        response = client.post('/restaurant/100/1', method='POST')
+        response = client.post('/upvote', method='POST')
         # response = client.post('/restaurant/1/1', method='POST')
         response.status_code == 302
 

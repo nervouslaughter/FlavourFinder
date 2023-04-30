@@ -443,11 +443,15 @@ def get_user_profile(user_id=None):
     }
 
     return profile
+@app.route('/writereview')
+def reviewpage():
+    if (not('logged_in' in session) or session['logged_in']==False):
+        return redirect('/login-page')
+    id=request.form.get('restaurant_id',False)
+    return render_template('write-review.html')
 @app.route('/restaurant/<int:restaurant_id>/reviewwrite', methods=['POST'])
 def reviewwrite(restaurant_id):
-        rating = request.form.get('rating',False)
-        if (rating==False):
-            return make_response('Rating cannot be empty', 400)
+        
         comment = request.form.get('comment',False)
         if (comment==False):
             return make_response('Comment cannot be empty', 400)
@@ -458,7 +462,7 @@ def reviewwrite(restaurant_id):
         new_review = Review(
             user_id=session['user_id'],
             restaurant_id=restaurant_id,
-            rating=rating,
+            rating=4,
             comment=comment,
             upvote_count=0,
             

@@ -150,9 +150,12 @@
       <div class="resto-info">
         <div class="data-left-half">
           <div class="top-buttons">
+            <form action="/writereview" method="get">
+              <input type="hidden" name="restaurant_id" value="{{restaurant.id}}">
             <button class="write-review1">
               <div class="write-a-review1">Write a Review</div>
             </button>
+          </form>
             <div class="share">
               <div class="share1">Share</div>
             </div>
