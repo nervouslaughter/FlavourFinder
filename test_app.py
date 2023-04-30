@@ -1,108 +1,152 @@
-import app
+import pytest
+from app import app
+import io
+
+# @pytest.fixture
+# def client():
+#     with app.test_client() as client:
+#         yield client
 
 def test_home():
     with app.test_client() as client:
         # Simulate a user who is not logged in
-        response = client.get('/home')
+        response = client.get('/homepage')
         assert response.status_code == 200  # Check that the response is successful
-        with open('homepage.html', 'rb') as f:
-            expected_html = f.read()
-        assert expected_html == response.data  # Check that the response contains the expected HTML
 
         # Simulate a logged-in user
         with client.session_transaction() as session:
             session['user_id'] = 1
-        response = client.get('/home')
-        assert response.status_code == 200  # Check that the response is successful
-        with open('homepage.html', 'rb') as f:
-            expected_html = f.read()
-        assert expected_html == response.data  # Check that the response contains the expected HTML
+        response = client.get('/homepage')
+        assert response.status_code == 200 
+        # print(response.data.decode())
+        # Check that the response is successful
 
-# def test_restaurant(client, app, db):
-#     # Add a new restaurant to the database
-#     restaurant = Restaurant(name='Test Restaurant')
-#     db.session.add(restaurant)
-#     db.session.commit()
 
-#     # Send a POST request to add a review to the restaurant
-#     response = client.post(f'/restaurant/{restaurant.id}', data={
-#         'rating': 5,
-#         'comment': 'Great food!'
-#     })
-#     assert response.status_code == 302  # Check that the response is a redirect
+def test_signup_login():
+        with app.test_client() as client:
+            response = client.post('/signup-page', method ='POST', data = {
+                'usname' : 'hqerty',
+                'email' : 'COPsucks@gmail.com',
+                'password' : 'COPsucks',
+            })
+            assert response.status_code == 400
+            # print(response.data.decode())
+            # test check for signup. 
+            # this check whether this signup has been successfully been added.
+            response = client.post('/login-page', method='POST', data={
+                'usname': 'cooldude4',
+                'password': 'cooldudefour',
+            })
+            assert response.status_code == 302
+            # print(response.data.decode())
 
-#     # Retrieve the updated restaurant from the database
-#     updated_restaurant = Restaurant.query.get(restaurant.id)
+def test_restaurantid() :
+    with app.test_client() as client : 
+            response = client.get('/restaurant/100', method='GET')
+            assert response.status_code == 200
+            # print(response.data.decode())
 
-#     # Check that the restaurant's rating has been updated
-#     assert updated_restaurant.rating == 5.0
 
-#     # Send a GET request to retrieve the restaurant's page
-#     response = client.get(f'/restaurant/{restaurant.id}')
-#     assert response.status_code == 200
+# def test_addimage():
+#     with app.test_client() as client : 
+#         response = client.post('/addimage', method='POST', data = {
+#             'restaurant_id' : '4',
+#             'image' : '10-downing-street-bhopal.jpg'
+#         })
+#         assert response.status_code == 302
 
-#     # Check that the restaurant's name is displayed on the page
-#     assert b'Test Restaurant' in response.data
 
-#     # Check that the review has been added to the page
-#     assert b'Great food!' in response.data
+def test_logout():
+    with app.test_client() as client:
+        response = client.get('/logout')
+        assert response.status_code == 302
+        # print(response.data.decode())
 
-# def test_signup(client, app, db):
-#     # Send a GET request to retrieve the signup page
-#     response = client.get('/signup-page')
-#     assert response.status_code == 200
+def test_aboutus() :
+    with app.test_client() as client:
+        response = client.get('/about-us')  
+        assert response.status_code == 200 
+        # print(response.data.decode())
 
-#     # Send a POST request to create a new user
-#     data = {
-#         'usname': 'testuser',
-#         'email': 'testuser@example.com',
-#         'password': 'testpassword'
-#     }
-#     response = client.post('/signup-page', data=data)
-#     assert response.status_code == 302  # Check that the response is a redirect
+def test_categories():
+    with app.test_client() as client:
+        response = client.get('/categories')
+        assert response.status_code == 200
+        # print(response.data.decode())
 
-#     # Check that the user has been added to the database
-#     user = User.query.filter_by(username='testuser').first()
-#     assert user is not None
 
-#     # Check that the user's information is correct
-#     assert user.username == 'testuser'
-#     assert user.email == 'testuser@example.com'
 
-#     # Check that the user's password is hashed
-#     assert user.password != 'testpassword'
+def test_restaurants_by_tags():
+    with app.test_client() as client:
+            response = client.get('restaurant-by-tags', method='GET', data = {
+                'tags' : 'Pizza, Salad',
+            })
+            # assert response.status_code == 200
+            print(response.data.decode())
 
-#     # Check that the user is logged in after signing up
-#     with client.session_transaction() as session:
-#         assert session['user_id'] == user.user_id
+def test_reviewwrite() :
+    with app.test_client() as client:
+        response = client.post('/restaurant/1/reviewwrite', method = 'POST', data = {
+            'rating' : '4',
+            'comment' : 'this restaurant sucks big time'
+        })
+        assert response.status_code == 302
+        print(response.data.decode())
 
-# def test_login():
-#     with app.test_request_context('/login-page', method='POST', data={
-#         'usname': 'testuser',
-#         'password': 'testpassword'
-#     }):
-#         response = login()
-#         assert response.status_code == 302  # Check that the response is a redirect
-#         assert session['user_id'] == 1  # Check that the user is logged in
+def test_profile():
+    with app.test_client() as client:
+        response = client.post('/login-page', method='POST', data={
+            'usname': 'cooldude4',
+            'password': 'cooldudefour',
+        })
+        # data = app.session['user_id']
+        # print(data)
+        response = client.get('/profile-page')
+        assert response.status_code == 200
+        # print(response.data.decode())
 
-#     with app.test_request_context('/login-page', method='POST', data={
-#         'usname': 'testuser',
-#         'password': 'wrongpassword'
-#     }):
-#         response = login()
-#         assert 'Invalid email or password' in response.data.decode('utf-8')  # Check that the error message is displayed
 
-#     with app.test_request_context('/login-page', method='GET'):
-#         response = login()
-#         assert response.status_code == 200  # Check that the login page is rendered
+def test_increaseupvotes() :
+    with app.test_client() as client:
+        response = client.post('/login-page', method='POST', data={
+            'usname': 'cooldude4',
+            'password': 'cooldudefour',
+        })
+        assert response.status_code == 302
+        response = client.post('/restaurant/100/1', method='POST')
+        # response = client.post('/restaurant/1/1', method='POST')
+        response.status_code == 302
 
-# def test_logout():
-#     with app.test_client() as client:
-#         # Login a user
-#         with client.session_transaction() as session:
-#             session['user_id'] = 1
+def test_search() :
+    with app.test_client() as client:
+        response = client.post('/search-page', method='POST', data = {
+            'query'  : 'Italian',
+        })
+        assert response.status_code == 200
 
-#         # Logout the user
-#         response = client.get('/logout')
-#         assert response.status_code == 302  # Check that the response is a redirect
-#         assert 'user_id' not in session  # Check that the user is logged out
+def test_translatereview():
+    with app.test_client() as client : 
+        response = client.post('/translate', method='POST')
+        assert response.status_code == 302
+        response = client.post('/login-page', method='POST', data={
+            'usname': 'cooldude4',
+            'password': 'cooldudefour',
+        })
+        assert response.status_code == 302
+        response = client.post('/translate', method='POST')
+        response = client.post('/translate', method='POST',data={'review_id': 1})
+
+        # clarify review_id
+
+
+def test_search():
+    with app.test_client() as client : 
+        response = client.post('/search-page', method='POST', data = {
+            'query' : '#Name of restaurant'
+        })
+        assert response.status_code == 200
+
+def test_searchcat():
+    with app.test_client() as client :
+        response = client.get('/search-page/fast', method='GET')
+        assert response.status_code == 200

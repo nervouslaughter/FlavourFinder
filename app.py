@@ -53,8 +53,7 @@ class restaurant(db.Model) :
     latitude = db.Column('latitude',db.Float())
     longitude = db.Column('longitude',db.Float())
     pricing_for_two = db.Column('pricing_for_two',db.Integer())
-    def tagspresent(self,x):
-        return  x in  self.tags.split(', ') 
+
 
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -81,7 +80,7 @@ class reviewtouser(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('users.user_id'),default=0)
 @app.route('/translate',methods=['POST'])
 def translatereview():
-    if (session['logged_in']==False):
+    if (not('logged_in' in session) or  session['logged_in']==False):
         return redirect('/login-page')
     print(session['user_id'])
     review_id=request.form.get('review_id',False)
@@ -99,11 +98,11 @@ def translatereview():
 @app.route('/search-page',methods=['GET','POST'])
 def search():
     
-    query_string=request.form.get('query',False)
+    query_string=request.form.get('query',"By Location")
     print(request.form)
-    if (query_string == False):
-        return make_response('Query string cannot be empty', 400)
     
+    if (query_string==""):
+        query_string="by location"
     
     restaurants=restaurant.query.filter(restaurant.name.like('%'+query_string+'%')).limit(5).all()
     # restaurant1={
@@ -128,12 +127,13 @@ def search():
     #         'images':[x.image_url for x in review_images.query.filter_by(review_id=reviews[1].review_id).all()]
             
     # }
-    if (len(restaurants)<2):
-        return make_response('Not enough restaurants', 400)
-    image1=Image.query.filter_by(restaurant_id=restaurants[0].restaurant_id).first().image_url
-    image2=Image.query.filter_by(restaurant_id=restaurants[1].restaurant_id).first().image_url
+    images=[]
+    for r in restaurants:
+        images=images+[Image.query.filter_by(restaurant_id=r.restaurant_id).first().image_url]
+    
+    
 
-    return render_template("search-page.html",restaurants=restaurants,query=query_string,image1=image1,image2=image2)
+    return render_template("search-page.html",restaurants=restaurants,query=query_string,images=images)
 @app.route('/search-page/<category>',methods=['GET'])
 def searchcat(category):
     
@@ -144,7 +144,7 @@ def searchcat(category):
     # Query the database for restaurants that match any of the tags
     restaurants2=restaurant.query.filter(restaurant.name.like('%'+category+'%')).limit(5).all()
 
-    restaurants = restaurant.query.filter(restaurant.tags.like('%'+category+'%')).all()
+    restaurants = restaurant.query.filter(restaurant.tags.like('%'+category+'%')).limit(5).all()
     
     
     # restaurant1={
@@ -172,12 +172,12 @@ def searchcat(category):
 
     if (len(restaurants)<2):
         restaurants=restaurants2
-    if (len(restaurants)<2):
-        make_response('Not enough restaurants', 400)
-    image1=Image.query.filter_by(restaurant_id=restaurants[0].restaurant_id).first().image_url
-    image2=Image.query.filter_by(restaurant_id=restaurants[1].restaurant_id).first().image_url
+    
+    images=[]
+    for r in restaurants:
+        images=images+[Image.query.filter_by(restaurant_id=r.restaurant_id).first().image_url]
 
-    return render_template("search-page.html",restaurants=restaurants,query=category,image1=image1,image2=image2)
+    return render_template("search-page.html",restaurants=restaurants,query=category,images=images)
 
 def finddistance(lat1,lon1,lat2,lon2):
     R=6370.0
@@ -350,9 +350,9 @@ def categories():
 
 @app.route('/homepage')
 def home():
-    if (not ('loggedin' in session)):
+    if (not ('loggedin' in session) or not('user_id' in session)):
         session['loggedin']=False
-        session['user']=None
+        session['user_id']=None
         session['logintext']='Login'
         session['loginlink']='/login-page'
     reviews=Review.query.order_by(Review.upvote_count.desc())
@@ -383,19 +383,8 @@ def home():
         return (render_template('homepage.html',loginlink='/logout',loginlinktext='LOGOUT',user=User.query.get(session['user_id']),review1=review1,review2=review2))
     else:
         return render_template('homepage.html',loginlink='/login-page',loginlinktext='LOGIN',review1=review1,review2=review2)
-def find_restaurants_by_rating(min_rating):
-    # Query the database for all restaurants with a rating greater than or equal to min_rating
-    restaurants = restaurant.query.filter(restaurant.rating >= min_rating).all()
-    
-    # Return the list of matching restaurants
-    return restaurants
-@app.route('/restaurants/min/<float:min_rating>')
-def restaurants_by_rating(min_rating):
-    # Call the find_restaurants_by_rating method to get a list of matching restaurants
-    restaurants = find_restaurants_by_rating(min_rating)
-    
-    # Render the results in a template
-    return render_template('search-page.html', restaurants=restaurants)
+
+
 @app.route('/restaurant_by_tags', methods=['POST'])
 def restaurants_by_tags():
     # Retrieve tags from form
@@ -410,19 +399,22 @@ def restaurants_by_tags():
     print(tag_list)
     
     # Query the database for restaurants that match any of the tags
-    restaurants = restaurant.query.filter(restaurant.tags.in_(tag_list)).all()
-    if (len(restaurants)<2):
-        return make_response('Not enough restaurants', 400)
-    image1=Image.query.filter_by(restaurant_id=restaurants[0].restaurant_id).first()
-    if (image1==None):
-        return make_response('Not enough restaurants', 400)
-    image1=image1.image_url
-    image2=Image.query.filter_by(restaurant_id=restaurants[1].restaurant_id).first()
-    if (image2==None):
-        return make_response('Not enough restaurants', 400)
-    image2=image2.image_url
+    restaurants = restaurant.query.filter(restaurant.tags.in_(tag_list)).limit(5).all()
+    # if (len(restaurants)<2):
+    #     return make_response('Not enough restaurants', 400)
+    # image1=Image.query.filter_by(restaurant_id=restaurants[0].restaurant_id).first()
+    # if (image1==None):
+    #     return make_response('Not enough restaurants', 400)
+    # image1=image1.image_url
+    # image2=Image.query.filter_by(restaurant_id=restaurants[1].restaurant_id).first()
+    # if (image2==None):
+    #     return make_response('Not enough restaurants', 400)
+    # image2=image2.image_url
+    images=[]
+    for r in restaurants:
+        images=images+[Image.query.filter_by(restaurant_id=r.restaurant_id).first().image_url]
 
-    return render_template("search-page.html",restaurants=restaurants,query=tags,image1=image1,image2=image2)
+    return render_template("search-page.html",restaurants=restaurants,query=tags,images=images)
     
     # Render the results in a template
 def get_restaurant_by_id(id):
@@ -519,4 +511,4 @@ def profile():
 #     return render_template('profile.html', user=user)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='')

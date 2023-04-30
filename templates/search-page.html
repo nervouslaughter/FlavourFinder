@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>
+      function getLocation() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition, showError);
+          } else {
+              alert("Geolocation is not supported by this browser.");
+          }
+      }
+
+      function showPosition(position) {
+          var longitude = position.coords.longitude;
+          var latitude = position.coords.latitude;
+          document.getElementById("longitude").value = longitude;
+          document.getElementById("latitude").value = latitude;
+          // document.forms["location-form"].submit();
+      }
+
+      function showError(error) {
+          switch(error.code) {
+              case error.PERMISSION_DENIED:
+                  alert("User denied the request for Geolocation.");
+                  break;
+              case error.POSITION_UNAVAILABLE:
+                  alert("Location information is unavailable.");
+                  break;
+              case error.TIMEOUT:
+                  alert("The request to get user location timed out.");
+                  break;
+              case error.UNKNOWN_ERROR:
+                  alert("An unknown error occurred.");
+                  break;
+          }
+      }
+  </script>
+  
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="../static/global.css" />
@@ -78,18 +113,19 @@
           </div>
         </div>
         <div class="showing-results-for">Showing results for “{{query}}”</div>
-        <a class="resto-card-2" href="./restaurant/{{restaurants[0].restaurant_id}}">
-          <img class="image-3-icon1" alt="" src="{{image2}}" />
+        {% for i in range(restaurants|length) %}
+        <a class="resto-card-2" href="./restaurant/{{restaurants[i].restaurant_id}}">
+          <img class="image-3-icon1" alt="" src="{{images[i]}}" />
 
           <div class="text-info1">
             <div class="name-tags1">
-              <div class="restaurant-name2">{{restaurants[0].name}}</div>
+              <div class="restaurant-name2">{{restaurants[i].name}}</div>
               <div class="tags1">
                 <div class="tag11">
-                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[0]}}</div>
+                  <div class="tag-11">{{(restaurants[i].tags.split(', '))[0]}}</div>
                 </div>
                 <div class="tag11">
-                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[1]}}</div>
+                  <div class="tag-11">{{(restaurants[i].tags.split(', '))[1]}}</div>
                 </div>
               </div>
               <div class="stars5">
@@ -118,104 +154,14 @@
                 />
               </div>
             </div>
-            <div class="openclosed-until1">Pricing for two: {{restaurants[0].pricing_for_two}}</div>
+            <div class="openclosed-until1">Pricing for two: {{restaurants[i].pricing_for_two}}</div>
             <div class="top-review-yo-kai1">
-              address: {{restaurants[0].address}}
+              address: {{restaurants[i].address}}
             </div>
           </div>
         </a>
-        <a class="resto-card-2" href="./restaurant/{{restaurants[0].restaurant_id}}">
-          <img class="image-3-icon1" alt="" src="{{image2}}" />
-
-          <div class="text-info1">
-            <div class="name-tags1">
-              <div class="restaurant-name2">{{restaurants[0].name}}</div>
-              <div class="tags1">
-                <div class="tag11">
-                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[0]}}</div>
-                </div>
-                <div class="tag11">
-                  <div class="tag-11">{{(restaurants[0].tags.split(', '))[1]}}</div>
-                </div>
-              </div>
-              <div class="stars5">
-                <img
-                  class="stars-child17"
-                  alt=""
-                  src="../static/public/review-star-4.svg"
-                />
-
-                <img
-                  class="stars-child17"
-                  alt=""
-                  src="../static/public/review-star-4.svg"
-                />
-
-                <img
-                  class="stars-child17"
-                  alt=""
-                  src="../static/public/review-star-4.svg"
-                />
-
-                <img
-                  class="stars-child17"
-                  alt=""
-                  src="../static/public/review-star-4.svg"
-                />
-              </div>
-            </div>
-            <div class="openclosed-until1">Pricing for two: {{restaurants[0].pricing_for_two}}</div>
-            <div class="top-review-yo-kai1">
-              address: {{restaurants[0].address}}
-            </div>
-          </div>
-        </a>
-        <a class="resto-card-2" href="./restaurant/{{restaurants[1].restaurant_id}}">
-          <img class="image-3-icon1" alt="" src="{{image1}}" />
-
-          <div class="text-info1">
-            <div class="name-tags1">
-              <div class="restaurant-name2"> {{ restaurants[1].name}}</div>
-              <div class="tags1">
-                <div class="tag11">
-                  <div class="tag-11">{{(restaurants[1].tags.split(', '))[0]}}</div>
-                </div>
-                <div class="tag11">
-                  <div class="tag-11">{{(restaurants[1].tags.split(', '))[1]}}</div>
-                </div>
-              </div>
-              <div class="stars5">
-                <img
-                  class="stars-child17"
-                  alt=""
-                  src="../static/public/review-star-4.svg"
-                />
-
-                <img
-                  class="stars-child17"
-                  alt=""
-                  src="../static/public/review-star-4.svg"
-                />
-
-                <img
-                  class="stars-child17"
-                  alt=""
-                  src="../static/public/review-star-4.svg"
-                />
-
-                <img
-                  class="stars-child17"
-                  alt=""
-                  src="../static/public/review-star-4.svg"
-                />
-              </div>
-            </div>
-            <div class="openclosed-until1">Pricing for two: {{restaurants[1].pricing_for_two}}</div>
-            <div class="top-review-yo-kai1">
-              address:{{restaurants[1].address}}
-            </div>
-          </div>
-        </a>
+        {% endfor %}
+        
       </div>
     </div>
 
@@ -223,28 +169,28 @@
       var searchIcon = document.getElementById("searchIcon");
       if (searchIcon) {
         searchIcon.addEventListener("click", function (e) {
-          window.location.href = "search-page.html";
+          window.location.href = "/search-page";
         });
       }
       
       var aBOUTUS = document.getElementById("aBOUTUS");
       if (aBOUTUS) {
         aBOUTUS.addEventListener("click", function (e) {
-          window.location.href = "./about-us";
+          window.location.href = "/about-us";
         });
       }
       
       var cATEGORIES = document.getElementById("cATEGORIES");
       if (cATEGORIES) {
         cATEGORIES.addEventListener("click", function (e) {
-          window.location.href = "./categories";
+          window.location.href = "/categories";
         });
       }
       
       var profilePicIcon = document.getElementById("profilePicIcon");
       if (profilePicIcon) {
         profilePicIcon.addEventListener("click", function (e) {
-          window.location.href = "./profile-page";
+          window.location.href = "/profile-page";
         });
       }
       </script>

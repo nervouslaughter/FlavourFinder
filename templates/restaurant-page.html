@@ -4,6 +4,41 @@
   <add key="webpages:Enabled" value="true" />
 
   <head>
+    <script>
+      function getLocation() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition, showError);
+          } else {
+              alert("Geolocation is not supported by this browser.");
+          }
+      }
+
+      function showPosition(position) {
+          var longitude = position.coords.longitude;
+          var latitude = position.coords.latitude;
+          document.getElementById("longitude").value = longitude;
+          document.getElementById("latitude").value = latitude;
+          // document.forms["location-form"].submit();
+      }
+
+      function showError(error) {
+          switch(error.code) {
+              case error.PERMISSION_DENIED:
+                  alert("User denied the request for Geolocation.");
+                  break;
+              case error.POSITION_UNAVAILABLE:
+                  alert("Location information is unavailable.");
+                  break;
+              case error.TIMEOUT:
+                  alert("The request to get user location timed out.");
+                  break;
+              case error.UNKNOWN_ERROR:
+                  alert("An unknown error occurred.");
+                  break;
+          }
+      }
+  </script>
+  
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="../static/global.css" />
